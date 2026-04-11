@@ -1,0 +1,148 @@
+---
+title: "Data Cleaning"
+format: html
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+This section describes the data cleaning process for the Lightcast job postings dataset.  
+The goal is to keep the most relevant variables, remove duplicate records, standardize missing values, and create a consistent annual salary variable for later analysis.
+
+## Import libraries
+
+We first import the Python libraries needed for data processing.
+Then we load the raw Lightcast job postings dataset.
+
+```{python}
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("data/raw/lightcast_job_postings.csv", low_memory=False)
+print("Original shape:", df.shape)
+```
+
+```{python}
+keep_cols = [
+    "ID",
+    "POSTED",
+    "EXPIRED",
+    "DURATION",
+    "TITLE_RAW",
+    "TITLE_CLEAN",
+    "COMPANY_NAME",
+    "SALARY",
+    "SALARY_FROM",
+    "SALARY_TO",
+    "ORIGINAL_PAY_PERIOD",
+    "REMOTE_TYPE_NAME",
+    "LOCATION",
+    "CITY_NAME",
+    "STATE_NAME",
+    "NAICS2_NAME",
+    "NAICS3_NAME",
+    "LIGHTCAST_SECTORS_NAME",
+    "SKILLS_NAME",
+    "SPECIALIZED_SKILLS_NAME",
+    "COMMON_SKILLS_NAME",
+    "SOFTWARE_SKILLS_NAME",
+    "MIN_YEARS_EXPERIENCE",
+    "MAX_YEARS_EXPERIENCE",
+    "EDUCATION_LEVELS_NAME"
+]
+
+df = df[keep_cols].copy()
+print("Shape after selecting columns:", df.shape)
+```
+
+Some job postings may appear more than once in the dataset.
+To avoid double-counting, I remove duplicate rows based on the unique job ID.
+Also, some missing values appear as blank strings instead of standard missing values.
+This step converts blank entries to NaN so they can be handled consistently.
+
+```{python}
+df = df.drop_duplicates(subset="ID")
+print("Shape after removing duplicates:", df.shape)
+
+df = df.replace(r"^\s*$", np.nan, regex=True)
+
+```
+
+The salary information is not always stored in the same way.
+Some postings include a single salary value, while others include only a salary range.
+
+The function below creates salary_clean using the following logic:
+
+```{python}
+def get_salary(row):
+    if pd.notna(row["SALARY"]):
+        return row["SALARY"]
+    elif pd.notna(row["SALARY_FROM"]) and pd.notna(row["SALARY_TO"]):
+        return (row["SALARY_FROM"] + row["SALARY_TO"]) / 2
+    elif pd.notna(row["SALARY_FROM"]):
+        return row["SALARY_FROM"]
+    elif pd.notna(row["SALARY_TO"]):
+        return row["SALARY_TO"]
+    else:
+        return np.nan
+
+df["salary_clean"] = df.apply(get_salary, axis=1)
+```
+
+The cleaned salary values still use different pay periods such as year, month, week, day, and hour.
+To make the salary values comparable, I convert all of them to annual salary.
+
+The function below applies standard conversion rules:
+
+```{python}
+def convert_to_annual(row):
+    salary = row["salary_clean"]
+    period = str(row["ORIGINAL_PAY_PERIOD"]).lower()
+
+    if pd.isna(salary):
+        return np.nan
+
+    if period == "year":
+        return salary
+    elif period == "month":
+        return salary * 12
+    elif period == "week":
+        return salary * 52
+    elif period == "day":
+        return salary * 260
+    elif period == "hour":
+        return salary * 2080
+    else:
+        return np.nan
+
+df["salary_annual"] = df.apply(convert_to_annual, axis=1)
+
+```
+In the remote work field, some missing values are recorded as the string [None].
+This step replaces them with standard missing values.
+
+```{python}
+df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
+
+```
+Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
+```{python}
+from pathlib import Path
+
+df = df[df["salary_annual"].notna()]
+print("Final shape:", df.shape)
+
+Path("data/processed").mkdir(parents=True, exist_ok=True)
+
+df.to_csv("data/processed/lightcast_cleaned.csv", index=False)
+print("Cleaned dataset saved successfully.")
+```
+
+The cleaned dataset is now ready for later analysis.
+```{python}
+df.head()
+```
