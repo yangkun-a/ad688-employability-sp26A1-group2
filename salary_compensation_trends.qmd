@@ -1,0 +1,59 @@
+---
+title: "Salary & Compensation trends"
+format: html
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Research Questions
+This section focuses on the following questions:
+
+1. How do salaries differ across AI vs. non-AI careers?
+2. What regions offer the highest-paying jobs in AI-related and traditional careers?
+3. Are remote jobs better paying than in-office roles?
+4. What industries saw the biggest wage growth in 2024?
+
+## Load Data
+
+```{python}
+import pandas as pd
+import numpy as np
+import plotly.express as px
+
+df = pd.read_csv("data/processed/lightcast_cleaned.csv")
+df.head()
+```
+
+1. How do salaries differ across AI vs. non-AI careers
+```{python}
+ai_keywords = [
+    "ai", "artificial intelligence", "machine learning", "ml",
+    "deep learning", "nlp", "computer vision", "generative ai",
+    "data scientist", "machine learning engineer", "ai engineer"
+]
+
+df["TITLE_CLEAN"] = df["TITLE_CLEAN"].astype(str)
+
+df["ai_flag"] = df["TITLE_CLEAN"].str.lower().apply(
+    lambda x: "AI-related" if any(k in x for k in ai_keywords) else "Non-AI"
+)
+
+salary_ai = (
+    df.groupby("ai_flag")["salary_annual"]
+      .mean()
+      .reset_index()
+      .sort_values("salary_annual", ascending=False)
+)
+
+fig = px.bar(
+    salary_ai,
+    x="ai_flag",
+    y="salary_annual",
+    title="Average Annual Salary: AI-related vs. Non-AI Careers",
+    labels={"ai_flag": "Career Type", "salary_annual": "Average Annual Salary"}
+)
+fig.show()
+```
