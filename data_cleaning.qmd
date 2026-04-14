@@ -22,7 +22,7 @@ Then we load the raw Lightcast job postings dataset.
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("data/raw/lightcast_job_postings.csv", low_memory=False)
+df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 print("Original shape:", df.shape)
 ```
 
@@ -180,3 +180,8 @@ The cleaned dataset is now ready for later analysis.
 ```{python}
 df.head()
 ```
+
+```{python}
+import pandas as pd
+df = pd.read_csv("data/processed/lightcast_cleaned.csv")
+df.head()
