@@ -91,12 +91,13 @@ def get_salary(row):
         return np.nan
 
 df["salary_clean"] = df.apply(get_salary, axis=1)
+
+
 ```
 
 The cleaned salary values still use different pay periods such as year, month, week, day, and hour.
 To make the salary values comparable, I convert all of them to annual salary.
 
-The function below applies standard conversion rules:
 
 ```{python}
 def convert_to_annual(row):
@@ -129,6 +130,44 @@ This step replaces them with standard missing values.
 df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
 
 ```
+
+```{python}
+import ast
+
+def parse_skills(x):
+    try:
+        return ast.literal_eval(x)
+    except:
+        return []
+
+df["SKILLS_NAME"] = df["SKILLS_NAME"].apply(parse_skills)
+
+df_skills = df.explode("SKILLS_NAME")
+
+df_skills["SKILLS_NAME"] = (
+    df_skills["SKILLS_NAME"]
+    .astype(str)
+    .str.strip()
+    .str.lower()
+)
+
+df_skills = df_skills[
+    df_skills["SKILLS_NAME"].notna() &
+    (df_skills["SKILLS_NAME"] != "") &
+    (df_skills["SKILLS_NAME"] != "none")
+]
+
+import re
+
+df_skills["SKILLS_NAME"] = df_skills["SKILLS_NAME"].apply(
+    lambda x: re.sub(r"[^a-zA-Z0-9\s\+\#]", "", x)
+)
+
+```
+The skills variable is stored as a string representation of a list.  
+To make it usable for analysis, I convert it into a proper list format and then expand it so that each row contains one skill.
+
+
 Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
 ```{python}
 from pathlib import Path
@@ -139,6 +178,7 @@ print("Final shape:", df.shape)
 Path("data/processed").mkdir(parents=True, exist_ok=True)
 
 df.to_csv("data/processed/lightcast_cleaned.csv", index=False)
+df_skills.to_csv("data/processed/lightcast_skills_cleaned.csv", index=False)
 print("Cleaned dataset saved successfully.")
 ```
 
