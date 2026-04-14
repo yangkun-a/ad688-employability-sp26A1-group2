@@ -11,14 +11,7 @@ website:
         text: "Project Overview"
       - href: data_cleaning.qmd
         text: "Data Preparation"
-      - href: eda.qmd
-        text: "Exploratory Analysis"
-      - href: skill_gap_analysis.qmd
-        text: "Skill Gap Analysis"
-      - href: ml_methods.qmd
-        text: "Predictive Modeling"
-      - href: career_plan.qmd
-        text: "Career Strategy"
+
 format:
   html:
     theme: cosmo
