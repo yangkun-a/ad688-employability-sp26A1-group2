@@ -91,12 +91,13 @@ def get_salary(row):
         return np.nan
 
 df["salary_clean"] = df.apply(get_salary, axis=1)
+
+
 ```
 
 The cleaned salary values still use different pay periods such as year, month, week, day, and hour.
 To make the salary values comparable, I convert all of them to annual salary.
 
-The function below applies standard conversion rules:
 
 ```{python}
 def convert_to_annual(row):
@@ -129,6 +130,66 @@ This step replaces them with standard missing values.
 df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
 
 ```
+
+```{python}
+import ast
+import re
+
+def clean_list_column(x):
+    if pd.isna(x):
+        return np.nan
+
+    try:
+        parsed = ast.literal_eval(x)
+        if isinstance(parsed, list):
+            items = parsed
+        else:
+            items = [parsed]
+    except:
+        items = [x]
+
+    cleaned = []
+    for s in items:
+        if pd.isna(s):
+            continue
+        s = str(s).strip()
+        s = re.sub(r"\s+", " ", s).strip()
+        if s and s.lower() != "none":
+            cleaned.append(s)
+
+    cleaned = list(dict.fromkeys(cleaned))
+    return ", ".join(cleaned) if cleaned else np.nan
+
+list_like_cols = [
+    "SKILLS_NAME",
+    "SPECIALIZED_SKILLS_NAME",
+    "COMMON_SKILLS_NAME",
+    "SOFTWARE_SKILLS_NAME",
+    "EDUCATION_LEVELS_NAME",
+    "LIGHTCAST_SECTORS_NAME"
+]
+
+for col in list_like_cols:
+    df[col] = df[col].apply(clean_list_column)
+
+def fix_encoding(x):
+    if pd.isna(x):
+        return x
+    try:
+        return x.encode("latin1").decode("utf-8")
+    except:
+        return x
+
+
+text_cols = ["COMPANY_NAME", "TITLE_RAW", "TITLE_CLEAN", "CITY_NAME", "STATE_NAME"]
+
+for col in text_cols:
+    df[col] = df[col].apply(fix_encoding)
+```
+The skills variable is stored as a string representation of a list.  
+To make it usable for analysis, I convert it into a proper list format and then expand it so that each row contains one skill.
+
+
 Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
 ```{python}
 from pathlib import Path
@@ -140,9 +201,16 @@ Path("data/processed").mkdir(parents=True, exist_ok=True)
 
 df.to_csv("data/processed/lightcast_cleaned.csv", index=False)
 print("Cleaned dataset saved successfully.")
+
 ```
 
 The cleaned dataset is now ready for later analysis.
 ```{python}
+df.head()
+```
+
+```{python}
+import pandas as pd 
+df = pd.read_csv('data/processed/lightcast_cleaned.csv')
 df.head()
 ```
