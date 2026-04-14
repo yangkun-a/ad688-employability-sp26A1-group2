@@ -133,36 +133,30 @@ df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
 
 ```{python}
 import ast
-
-def parse_skills(x):
-    try:
-        return ast.literal_eval(x)
-    except:
-        return []
-
-df["SKILLS_NAME"] = df["SKILLS_NAME"].apply(parse_skills)
-
-df_skills = df.explode("SKILLS_NAME")
-
-df_skills["SKILLS_NAME"] = (
-    df_skills["SKILLS_NAME"]
-    .astype(str)
-    .str.strip()
-    .str.lower()
-)
-
-df_skills = df_skills[
-    df_skills["SKILLS_NAME"].notna() &
-    (df_skills["SKILLS_NAME"] != "") &
-    (df_skills["SKILLS_NAME"] != "none")
-]
-
 import re
 
-df_skills["SKILLS_NAME"] = df_skills["SKILLS_NAME"].apply(
-    lambda x: re.sub(r"[^a-zA-Z0-9\s\+\#]", "", x)
-)
+def clean_skill_list(x):
+    if pd.isna(x):
+        return np.nan
+    try:
+        skills = ast.literal_eval(x)
+        if not isinstance(skills, list):
+            return np.nan
+        cleaned = []
+        for s in skills:
+            if pd.isna(s):
+                continue
+            s = str(s).strip().lower()
+            s = re.sub(r"[^a-zA-Z0-9\s\+\#]", "", s)
+            s = re.sub(r"\s+", " ", s).strip()
+            if s and s != "none":
+                cleaned.append(s)
+        cleaned = list(dict.fromkeys(cleaned))
+        return ", ".join(cleaned) if cleaned else np.nan
+    except:
+        return np.nan
 
+df["SKILLS_NAME"] = df["SKILLS_NAME"].apply(clean_skill_list)
 ```
 The skills variable is stored as a string representation of a list.  
 To make it usable for analysis, I convert it into a proper list format and then expand it so that each row contains one skill.
@@ -178,8 +172,8 @@ print("Final shape:", df.shape)
 Path("data/processed").mkdir(parents=True, exist_ok=True)
 
 df.to_csv("data/processed/lightcast_cleaned.csv", index=False)
-df_skills.to_csv("data/processed/lightcast_skills_cleaned.csv", index=False)
 print("Cleaned dataset saved successfully.")
+
 ```
 
 The cleaned dataset is now ready for later analysis.
