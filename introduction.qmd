@@ -5,6 +5,7 @@ date: April 7, 2026
 format: 
   html:
     bibliography: references.bib
+    csl: csl/econometrica.csl
 ---
 
 
