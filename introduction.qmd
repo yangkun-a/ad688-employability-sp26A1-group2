@@ -6,19 +6,19 @@ format:
   html:
     bibliography: references.bib
     csl: csl/econometrica.csl
+    toc: true
 ---
 
 ## Introduction
 
-Artificial intelligence (AI) is rapidly changing the global labor market. It is affecting job demand, required skills, and wage structures. Many industries are now integrating AI into their daily operations. This change is not only about automation. It is also about how work is performed and valued.
+Artificial intelligence (AI) is rapidly changing the global labor market. It is affecting job demand, required skills, and wage structures. Many industries are now integrating AI into their daily operations. This change is not only about automation. It is also about how work is performed and valued. 
 
 This project focuses on two key areas. The first area is salary and compensation trends. The second area is the growing importance of business analytics, data science, and machine learning skills. Recent studies show that AI is changing both job types and pay levels. Workers with technical and data skills often receive higher salaries.
 
-At the same time, AI raises concerns about job displacement and inequality. AI can improve productivity and create new opportunities. However, it can also widen the gap between high-skilled and low-skilled workers. It may also change how jobs are distributed across occupations @melina2024gen.
+At the same time, AI raises concerns about job displacement and inequality. AI can improve productivity and create new opportunities. However, it can also widen the gap between high-skilled and low-skilled workers. It may also change how jobs are distributed across occupations @melina2024gen. These issues are important for job seekers in 2024. They are especially important for students entering fields like business analytics and data science. 
 
-These issues are important for job seekers in 2024. They are especially important for students entering fields like business analytics and data science. This study uses labor market data and recent research to examine these trends. The goal is to understand salary patterns, skill demand, and the role of AI in shaping careers.
+This study uses labor market data and recent research to examine these trends. The goal is to understand salary patterns, skill demand, and the role of AI in shaping careers. This project aims to provide practical insights. These insights can help individuals align their skills with market needs. They can also support better career decisions in an AI-driven economy.
 
-This project aims to provide practical insights. These insights can help individuals align their skills with market needs. They can also support better career decisions in an AI-driven economy.
-
+## Literature Review
 
 
