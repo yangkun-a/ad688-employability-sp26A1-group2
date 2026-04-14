@@ -22,7 +22,7 @@ Then we load the raw Lightcast job postings dataset.
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("data/raw/lightcast_job_postings.csv", low_memory=False)
+df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 print("Original shape:", df.shape)
 ```
 
@@ -135,28 +135,56 @@ df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
 import ast
 import re
 
-def clean_skill_list(x):
+def clean_list_column(x):
     if pd.isna(x):
         return np.nan
-    try:
-        skills = ast.literal_eval(x)
-        if not isinstance(skills, list):
-            return np.nan
-        cleaned = []
-        for s in skills:
-            if pd.isna(s):
-                continue
-            s = str(s).strip().lower()
-            s = re.sub(r"[^a-zA-Z0-9\s\+\#]", "", s)
-            s = re.sub(r"\s+", " ", s).strip()
-            if s and s != "none":
-                cleaned.append(s)
-        cleaned = list(dict.fromkeys(cleaned))
-        return ", ".join(cleaned) if cleaned else np.nan
-    except:
-        return np.nan
 
-df["SKILLS_NAME"] = df["SKILLS_NAME"].apply(clean_skill_list)
+    try:
+        parsed = ast.literal_eval(x)
+        if isinstance(parsed, list):
+            items = parsed
+        else:
+            items = [parsed]
+    except:
+        items = [x]
+
+    cleaned = []
+    for s in items:
+        if pd.isna(s):
+            continue
+        s = str(s).strip()
+        s = re.sub(r"\s+", " ", s).strip()
+        if s and s.lower() != "none":
+            cleaned.append(s)
+
+    cleaned = list(dict.fromkeys(cleaned))
+    return ", ".join(cleaned) if cleaned else np.nan
+
+list_like_cols = [
+    "SKILLS_NAME",
+    "SPECIALIZED_SKILLS_NAME",
+    "COMMON_SKILLS_NAME",
+    "SOFTWARE_SKILLS_NAME",
+    "EDUCATION_LEVELS_NAME",
+    "LIGHTCAST_SECTORS_NAME"
+]
+
+for col in list_like_cols:
+    df[col] = df[col].apply(clean_list_column)
+
+def fix_encoding(x):
+    if pd.isna(x):
+        return x
+    try:
+        return x.encode("latin1").decode("utf-8")
+    except:
+        return x
+
+
+text_cols = ["COMPANY_NAME", "TITLE_RAW", "TITLE_CLEAN", "CITY_NAME", "STATE_NAME"]
+
+for col in text_cols:
+    df[col] = df[col].apply(fix_encoding)
 ```
 The skills variable is stored as a string representation of a list.  
 To make it usable for analysis, I convert it into a proper list format and then expand it so that each row contains one skill.
@@ -180,3 +208,4 @@ The cleaned dataset is now ready for later analysis.
 ```{python}
 df.head()
 ```
+
