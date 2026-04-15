@@ -1,0 +1,32 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      - main
+
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - v2
+      - v1.*
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render site
+        uses: quarto-dev/quarto-actions/render@v2
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
