@@ -57,3 +57,7 @@ fig = px.bar(
 )
 fig.show()
 ```
+
+```{python}
+df["salary_annual"].max()
+```
