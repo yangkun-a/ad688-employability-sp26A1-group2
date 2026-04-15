@@ -17,6 +17,22 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Create virtual environment
+        uses: actions/setup-python@v6
+        with:
+             python-version: '3.13'
+             cache: 'pip' # caching pip dependencies
+      - run: python -m venv .venv
+
+      - name: Activate the venv
+        uses: actions/setup-python@v6
+      - run: source .venv/bin/activate
+        
+
+      - name: Install all packages
+        uses: actions/setup-python@v6
+      - run: pip install -r requirements.txt
+
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
