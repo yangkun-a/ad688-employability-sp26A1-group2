@@ -100,7 +100,7 @@ To make the salary values comparable, I convert all of them to annual salary.
 
 
 ```{python}
-def convert_to_annual(row):
+def smart_convert(row):
     salary = row["salary_clean"]
     period = str(row["ORIGINAL_PAY_PERIOD"]).lower()
 
@@ -109,22 +109,26 @@ def convert_to_annual(row):
 
     if period == "year":
         return salary
-    elif period == "month":
-        return salary * 12
-    elif period == "week":
-        return salary * 52
-    elif period == "day":
-        return salary * 260
-    elif period == "hour":
+
+    elif period == "hour" and salary < 500:
         return salary * 2080
+
+    elif period == "day" and salary < 4000:
+        return salary * 260
+
+    elif period == "week" and salary < 20000:
+        return salary * 52
+
+    elif period == "month" and salary < 60000:
+        return salary * 12
+
     else:
-        return np.nan
+        return salary
 
-df["salary_annual"] = df.apply(convert_to_annual, axis=1)
-
+df["salary_annual"] = df.apply(smart_convert, axis=1)
+df = df[df["salary_annual"].between(20000, 720000)]
 ```
-In the remote work field, some missing values are recorded as the string [None].
-This step replaces them with standard missing values.
+Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized.
 
 ```{python}
 df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
