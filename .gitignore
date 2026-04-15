@@ -209,4 +209,3 @@ __marimo__/
 data/raw/
 /.quarto/
 **/*.quarto_ipynb
-_site/
