@@ -1,7 +1,7 @@
 ---
 title: "Job Market Analysis 2024"
 author: "Team 2"
-date: April 7, 2026
+date: today
 format: 
   html:
     bibliography: references.bib
@@ -15,10 +15,22 @@ Artificial intelligence (AI) is rapidly changing the global labor market. It is 
 
 This project focuses on two key areas. The first area is salary and compensation trends. The second area is the growing importance of business analytics, data science, and machine learning skills. Recent studies show that AI is changing both job types and pay levels. Workers with technical and data skills often receive higher salaries.
 
-At the same time, AI raises concerns about job displacement and inequality. AI can improve productivity and create new opportunities. However, it can also widen the gap between high-skilled and low-skilled workers. It may also change how jobs are distributed across occupations @melina2024gen. These issues are important for job seekers in 2024. They are especially important for students entering fields like business analytics and data science. 
+At the same time, AI raises concerns about job displacement and inequality. AI can improve productivity and create new opportunities. However, it can also widen the gap between high-skilled and low-skilled workers. It may also change how jobs are distributed across occupations [@melina2024gen]. These issues are important for job seekers in 2024. They are especially important for students entering fields like business analytics and data science. 
 
 This study uses labor market data and recent research to examine these trends. The goal is to understand salary patterns, skill demand, and the role of AI in shaping careers. This project aims to provide practical insights. These insights can help individuals align their skills with market needs. They can also support better career decisions in an AI-driven economy.
 
 ## Literature Review
 
+Recent studies show that artificial intelligence (AI) is reshaping the labor market in several important ways. These changes affect job availability, skill demand, and wage distribution.
 
+First, AI is changing employment patterns across industries. The International Monetary Fund (2024) reports that AI will affect a large share of global jobs. Many routine and repetitive tasks are at risk of automation. Jobs in administration, customer service, and basic data processing are especially vulnerable. At the same time, AI creates new roles. These roles often require advanced analytical thinking and technical skills. This dual effect shows that AI does not only eliminate jobs. It also transforms the types of work that people perform [@melina2024gen].
+
+Second, AI is influencing salary structures. [@bone2025skills] find that workers with AI and data science skills receive higher wages than those without these skills. Employers are shifting toward skill-based hiring. They focus more on what candidates can do rather than their formal degrees. This shift increases the value of practical and technical abilities. It also creates a clear salary premium for workers with data-driven expertise. As a result, business analytics and data science roles are becoming more attractive in the job market.
+
+Third, AI contributes to wage inequality. [@georgieff2024artificial] shows that high-skilled workers benefit more from AI adoption. These workers can use AI tools to increase productivity and output. In contrast, low-skilled workers often face higher risks of displacement. This imbalance leads to widening income gaps. It may also create unequal access to opportunities across different groups. These patterns highlight the importance of skill development in reducing inequality.
+
+Finally, automation is transforming traditional technical occupations. The U.S. Bureau of Labor Statistics reports that engineering jobs are evolving rather than disappearing. Workers are expected to use AI tools to improve efficiency and decision-making. This change requires engineers to learn new skills. It also shows that technology is augmenting human work instead of fully replacing it [@machovec2025incorporating].
+
+Overall, the literature suggests that AI is restructuring the labor market. It increases demand for advanced skills and technical knowledge. It also introduces challenges such as wage inequality and skill gaps. These findings support this study’s focus on salary trends and the growing importance of data science and business analytics skills.
+
+## References
