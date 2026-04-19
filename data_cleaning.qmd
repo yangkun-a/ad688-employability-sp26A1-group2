@@ -95,9 +95,8 @@ df["salary_clean"] = df.apply(get_salary, axis=1)
 
 ```
 
-The cleaned salary values still use different pay periods such as year, month, week, day, and hour.
-To make the salary values comparable, I convert all of them to annual salary.
-
+The salary field still contains different pay periods such as year, month, week, day, and hour.
+Because the pay period labels are not always reliable, I use a rule-based conversion approach to create a comparable annual salary variable.
 
 ```{python}
 def smart_convert(row):
@@ -128,7 +127,7 @@ def smart_convert(row):
 df["salary_annual"] = df.apply(smart_convert, axis=1)
 df = df[df["salary_annual"].between(20000, 720000)]
 ```
-Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized.
+Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly,dayily, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized. Based on my research, I established the thresholds outlined above; these serve to minimize the impact on the data while simultaneously filtering out erroneous input values.
 
 ```{python}
 df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
@@ -190,9 +189,8 @@ text_cols = ["COMPANY_NAME", "TITLE_RAW", "TITLE_CLEAN", "CITY_NAME", "STATE_NAM
 for col in text_cols:
     df[col] = df[col].apply(fix_encoding)
 ```
-The skills variable is stored as a string representation of a list.  
-To make it usable for analysis, I convert it into a proper list format and then expand it so that each row contains one skill.
-
+Several skills-related fields are stored as string representations of lists.
+To make them usable for later analysis, I parse these values, remove duplicates, and convert them into a consistent comma-separated format.
 
 Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
 ```{python}
