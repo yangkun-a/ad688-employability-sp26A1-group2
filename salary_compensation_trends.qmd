@@ -27,7 +27,7 @@ df = pd.read_csv("data/processed/lightcast_cleaned.csv")
 df.head()
 ```
 
-1. How do salaries differ across AI vs. non-AI careers
+## 1. How do salaries differ across AI vs. non-AI careers
 ```{python}
 ai_keywords = [
     "ai", "artificial intelligence", "machine learning", "ml",
@@ -57,7 +57,31 @@ fig = px.bar(
 )
 fig.show()
 ```
+The bar chart shows that AI-related careers have a slightly higher average annual salary than non-AI careers. 
+In this sample, the average salary for AI-related roles is around 120k, while non-AI roles are slightly lower at about 116k. 
+This suggests that jobs involving AI and machine learning skills tend to be compensated at a somewhat higher level.
+
+However, the salary gap is not very large, which may indicate that many non-AI positions in the dataset are also high-paying technical or business roles. 
+Overall, the figure supports the idea that AI-related jobs offer a salary premium, but the difference appears to be moderate rather than dramatic.
+
 
 ```{python}
-df["salary_annual"].max()
+
+```
+
+```{python}
+
+```
+
+```{python}
+
+```
+
+```{python}
+
+```
+
+
+```{python}
+
 ```
