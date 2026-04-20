@@ -144,7 +144,7 @@ The chart shows that fully remote jobs have the highest average annual salary, f
 However, this result should be interpreted carefully. The higher average salary for remote jobs may reflect the fact that many remote positions are concentrated in high-paying technical or analytical occupations, rather than remote work itself directly causing higher pay. Overall, the figure indicates a positive association between remote work arrangements and salary levels, but other factors such as industry, role type, and experience may also be important.
 
 
-
+## 4. How did salary levels change over time in 2024?
 ```{python}
 df["POSTED"] = pd.to_datetime(df["POSTED"], errors="coerce")
 df["post_month"] = df["POSTED"].dt.to_period("M").astype(str)
@@ -178,11 +178,93 @@ The line chart shows that AI-related jobs generally maintained higher average sa
 This pattern suggests that the salary premium for AI-related jobs was not only persistent over time but also became more pronounced toward the later months in the dataset. Overall, the time analysis indicates that AI-related roles experienced greater salary growth and stronger momentum than non-AI roles in 2024.
 
 
+## 5. What industries saw the biggest wage growth in 2024?
+```{python}
+industry_month = (
+    df[df["post_year"] == 2024]
+    .groupby(["NAICS2_NAME", "post_month"])["salary_annual"]
+    .mean()
+    .reset_index()
+)
+
+first_last = industry_month[industry_month["post_month"].isin(["2024-05", "2024-09"])]
+
+industry_growth = (
+    first_last.pivot(index="NAICS2_NAME", columns="post_month", values="salary_annual")
+    .dropna()
+    .reset_index()
+)
+
+industry_growth["wage_growth"] = industry_growth["2024-09"] - industry_growth["2024-05"]
+
+industry_growth_top = industry_growth.sort_values("wage_growth", ascending=False).head(10)
+
+fig = px.bar(
+    industry_growth_top,
+    x="NAICS2_NAME",
+    y="wage_growth",
+    title="Top 10 Industries by Wage Growth in 2024",
+    labels={
+        "NAICS2_NAME": "Industry",
+        "wage_growth": "Wage Growth"
+    }
+)
+
+fig.show()
+```
+The chart shows that wage growth in 2024 was uneven across industries, with some sectors experiencing much stronger increases than others. Public Administration recorded the largest wage growth among the industries shown, followed by Unclassified Industry and Retail Trade. This suggests that salary growth was concentrated in a limited number of sectors rather than being broadly shared across the labor market.
+
+The differences across industries indicate that sector-specific demand, hiring conditions, and labor shortages may have played an important role in shaping wage changes during 2024. Overall, industry appears to be an important dimension for understanding how salary levels evolved over time.
+
+## 6. Which job characteristics are most strongly associated with salary?
+```{python}
+reg_df = df[[
+    "salary_annual",
+    "ai_flag",
+    "REMOTE_TYPE_NAME",
+    "MIN_YEARS_EXPERIENCE",
+    "STATE_NAME",
+    "NAICS2_NAME"
+]].dropna().copy()
+
+reg_df["log_salary"] = np.log(reg_df["salary_annual"])
+reg_df["ai_binary"] = np.where(reg_df["ai_flag"] == "AI-related", 1, 0)
+reg_df["remote_flag"] = np.where(reg_df["REMOTE_TYPE_NAME"] == "Remote", 1, 0)
+reg_df["hybrid_flag"] = np.where(reg_df["REMOTE_TYPE_NAME"] == "Hybrid Remote", 1, 0)
+
+model = smf.ols(
+    "log_salary ~ ai_binary + remote_flag + hybrid_flag + MIN_YEARS_EXPERIENCE + C(STATE_NAME) + C(NAICS2_NAME)",
+    data=reg_df
+).fit()
+
+print(model.summary())　
+model.params[["ai_binary", "remote_flag", "MIN_YEARS_EXPERIENCE"]]
+
+```
+
+```{python}
+model.pvalues[["ai_binary", "remote_flag", "MIN_YEARS_EXPERIENCE"]]
+
+```
+The regression results show that several job characteristics are significantly associated with salary after controlling for region and industry. First, the coefficient for `ai_binary` is positive and statistically significant, suggesting that AI-related jobs are associated with higher salaries than non-AI jobs, even after accounting for other factors. Based on the coefficient estimate, AI-related roles are associated with an approximate 5.7% salary premium.
+
+Second, the coefficient for `remote_flag` is also positive and highly significant, indicating that fully remote jobs are associated with higher salaries relative to the baseline group. The estimated effect suggests that remote roles are associated with roughly an 8.3% salary premium, holding other variables constant. 
+
+Finally, `MIN_YEARS_EXPERIENCE` has a positive and highly significant relationship with salary. This means that jobs requiring more experience tend to pay more, with each additional year of minimum required experience associated with about a 5.5% increase in salary. Overall, the regression suggests that AI specialization, remote work, and experience requirements are all important predictors of salary.
+
+## 7. Can machine learning predict whether a job is high-paying?
+```{python}
+
+```
+
 
 ```{python}
 
 ```
 
+```{python}
+
+```
 
 ```{python}
 
