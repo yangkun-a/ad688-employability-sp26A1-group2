@@ -14,7 +14,10 @@ This section focuses on the following questions:
 1. How do salaries differ across AI vs. non-AI careers?
 2. What regions offer the highest-paying jobs in AI-related and traditional careers?
 3. Are remote jobs better paying than in-office roles?
-4. What industries saw the biggest wage growth in 2024?
+4. How did salary levels change over time in 2024?
+5. What industries saw the biggest wage growth in 2024?
+6. Which job characteristics are most strongly associated with salary?
+7. Can machine learning predict whether a job is high-paying?
 
 ## Load Data
 
@@ -22,9 +25,17 @@ This section focuses on the following questions:
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import statsmodels.formula.api as smf
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
 
 df = pd.read_csv("data/processed/lightcast_cleaned.csv")
 df.head()
+
+df["POSTED"] = pd.to_datetime(df["POSTED"], errors="coerce")
+df["post_month"] = df["POSTED"].dt.to_period("M").astype(str)
+df["post_year"] = df["POSTED"].dt.year
 ```
 
 ## 1. How do salaries differ across AI vs. non-AI careers
@@ -65,17 +76,108 @@ However, the salary gap is not very large, which may indicate that many non-AI p
 Overall, the figure supports the idea that AI-related jobs offer a salary premium, but the difference appears to be moderate rather than dramatic.
 
 
+## 2. What regions offer the highest-paying jobs in AI-related and traditional careers?
 ```{python}
+region_salary = (
+    df.groupby(["STATE_NAME", "ai_flag"])["salary_annual"]
+    .mean()
+    .reset_index()
+)
 
+top_regions = (
+    region_salary.groupby("STATE_NAME")["salary_annual"]
+    .mean()
+    .sort_values(ascending=False)
+    .head(10)
+    .index
+)
+
+region_salary_top = region_salary[region_salary["STATE_NAME"].isin(top_regions)]
+
+fig = px.bar(
+    region_salary_top.sort_values("salary_annual", ascending=True),
+    x="salary_annual",
+    y="STATE_NAME",
+    color="ai_flag",
+    barmode="group",
+    orientation="h",
+    title="Top Regions by Average Salary: AI-related vs. Non-AI Careers",
+    labels={
+        "STATE_NAME": "Region",
+        "salary_annual": "Average Annual Salary",
+        "ai_flag": "Career Type"
+    }
+)
+
+fig.show()
 ```
 
+The chart shows that salary levels vary noticeably across regions, confirming that geography is an important factor in compensation. Among the regions shown, Montana has the highest average salary for AI-related jobs, making it the strongest-paying region for AI-related careers in this comparison. In general, AI-related jobs tend to pay more than non-AI jobs across most of the top-paying regions, suggesting that AI and technical skills receive an additional salary premium in many local labor markets.
+
+At the same time, the size of the salary gap differs across regions, which indicates that the value of AI-related skills is not uniform across locations. Overall, the figure suggests that both region and career type jointly influence salary outcomes.
+
+## 3. Are remote jobs better paying than in-office roles?
 ```{python}
+remote_salary = (
+    df[df["REMOTE_TYPE_NAME"].notna()]
+    .groupby("REMOTE_TYPE_NAME")["salary_annual"]
+    .mean()
+    .reset_index()
+    .sort_values("salary_annual", ascending=False)
+)
 
+fig = px.bar(
+    remote_salary,
+    x="REMOTE_TYPE_NAME",
+    y="salary_annual",
+    title="Average Annual Salary by Work Arrangement",
+    labels={
+        "REMOTE_TYPE_NAME": "Work Arrangement",
+        "salary_annual": "Average Annual Salary"
+    }
+)
+
+fig.show()
 ```
+The chart shows that fully remote jobs have the highest average annual salary, followed by hybrid remote roles, while not remote jobs have the lowest average salary among the three categories. This suggests that remote work is associated with higher-paying positions in this dataset.
+
+However, this result should be interpreted carefully. The higher average salary for remote jobs may reflect the fact that many remote positions are concentrated in high-paying technical or analytical occupations, rather than remote work itself directly causing higher pay. Overall, the figure indicates a positive association between remote work arrangements and salary levels, but other factors such as industry, role type, and experience may also be important.
+
+
 
 ```{python}
+df["POSTED"] = pd.to_datetime(df["POSTED"], errors="coerce")
+df["post_month"] = df["POSTED"].dt.to_period("M").astype(str)
+df["post_year"] = df["POSTED"].dt.year
 
+salary_time = (
+    df[df["post_year"] == 2024]
+    .groupby(["post_month", "ai_flag"])["salary_annual"]
+    .mean()
+    .reset_index()
+)
+
+fig = px.line(
+    salary_time,
+    x="post_month",
+    y="salary_annual",
+    color="ai_flag",
+    markers=True,
+    title="Monthly Average Salary in 2024: AI-related vs. Non-AI Careers",
+    labels={
+        "post_month": "Month",
+        "salary_annual": "Average Annual Salary",
+        "ai_flag": "Career Type"
+    }
+)
+
+fig.show()
 ```
+The line chart shows that AI-related jobs generally maintained higher average salaries than non-AI jobs during most months in 2024. While both groups experienced a decline around July 2024, salaries rose again afterward, especially for AI-related roles. From July to September, the salary gap widened noticeably, with AI-related careers showing stronger upward growth than non-AI careers.
+
+This pattern suggests that the salary premium for AI-related jobs was not only persistent over time but also became more pronounced toward the later months in the dataset. Overall, the time analysis indicates that AI-related roles experienced greater salary growth and stronger momentum than non-AI roles in 2024.
+
+
 
 ```{python}
 
