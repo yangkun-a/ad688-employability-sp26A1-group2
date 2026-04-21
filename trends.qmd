@@ -44,7 +44,7 @@ plt.ylabel("Number of Job Postings")
 plt.xticks(rotation=45)
 plt.show()
 ```
-### Industry analysis indicates that the Professional, Scientific and Technical Services sector is leading the way in hiring data professionals. Other major industries include finance and insurance, information, manufacturing, and health care. These industries rely heavily on data-driven decision-making, predictive analytics and operational optimisation. Consequently, they continue to generate strong demand for talent in the fields of data science and business analytics.
+Industry analysis indicates that the Professional, Scientific and Technical Services sector is leading the way in hiring data professionals. Other major industries include finance and insurance, information, manufacturing, and health care. These industries rely heavily on data-driven decision-making, predictive analytics and operational optimisation. Consequently, they continue to generate strong demand for talent in the fields of data science and business analytics.
 
 ## 2.5.4 Career Outlook
 ```{python}
