@@ -12,7 +12,7 @@ website:
       - href: data_cleaning.qmd
         text: "Data Preparation"
       - href: salary_compensation_trends.qmd
-        text: "EDA"
+        text: "Salary & Compensation trends"
 
 
 format:
