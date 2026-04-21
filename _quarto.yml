@@ -11,6 +11,9 @@ website:
         text: "Project Overview"
       - href: data_cleaning.qmd
         text: "Data Preparation"
+      - href: salary_compensation_trends.qmd
+        text: "EDA"
+
 
 format:
   html:
