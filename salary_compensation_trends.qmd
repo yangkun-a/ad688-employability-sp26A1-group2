@@ -307,7 +307,6 @@ print("Accuracy:", accuracy_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 ```
 
-The machine learning model achieved an accuracy of about 75.7%, suggesting that job attributes in the 2024 postings dataset—such as AI-related status, work arrangement, experience requirements, region, and industry—provide a useful basis for predicting whether a job belongs to the high-salary group. This indicates that salary differences in the 2024 job market were meaningfully associated with observable posting characteristics rather than appearing completely random.
+The machine learning model achieved an accuracy of about 75.7%, indicating that job characteristics in the 2024 postings dataset can reasonably predict whether a position is high-paying. Features such as AI-related status, remote work, experience requirements, region, and industry appear to capture meaningful salary patterns in the 2024 job market.
 
-The classification report also shows that the model performed slightly better in identifying high-salary jobs than low-salary jobs. This suggests that the selected features were especially helpful for recognizing better-paid positions in the 2024 labor market, although some classification errors still remained. Overall, the machine learning results reinforce the earlier findings that salary outcomes in 2024 were shaped by multiple factors, including technical specialization, work arrangement, experience, location, and industry.
-
+The model performed slightly better at identifying high-salary jobs than low-salary jobs, which suggests that these features are particularly informative for recognizing better-paid roles. Overall, the machine learning results support the earlier regression analysis by showing that salary differences in 2024 were associated with multiple job-related factors rather than a single variable alone.
