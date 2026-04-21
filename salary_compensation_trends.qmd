@@ -237,15 +237,15 @@ model = smf.ols(
     data=reg_df
 ).fit()
 
-print(model.summary())　
+print(model.summary())
 model.params[["ai_binary", "remote_flag", "MIN_YEARS_EXPERIENCE"]]
 
 ```
 
 ```{python}
 model.pvalues[["ai_binary", "remote_flag", "MIN_YEARS_EXPERIENCE"]]
-
 ```
+
 The regression results show that several job characteristics are significantly associated with salary after controlling for region and industry. First, the coefficient for `ai_binary` is positive and statistically significant, suggesting that AI-related jobs are associated with higher salaries than non-AI jobs, even after accounting for other factors. Based on the coefficient estimate, AI-related roles are associated with an approximate 5.7% salary premium.
 
 Second, the coefficient for `remote_flag` is also positive and highly significant, indicating that fully remote jobs are associated with higher salaries relative to the baseline group. The estimated effect suggests that remote roles are associated with roughly an 8.3% salary premium, holding other variables constant. 
@@ -254,18 +254,60 @@ Finally, `MIN_YEARS_EXPERIENCE` has a positive and highly significant relationsh
 
 ## 7. Can machine learning predict whether a job is high-paying?
 ```{python}
+ml_df = df[[
+    "salary_annual",
+    "ai_flag",
+    "REMOTE_TYPE_NAME",
+    "MIN_YEARS_EXPERIENCE",
+    "MAX_YEARS_EXPERIENCE",
+    "STATE_NAME",
+    "NAICS2_NAME"
+]].dropna().copy()
 
+ml_df["high_salary"] = np.where(
+    ml_df["salary_annual"] >= ml_df["salary_annual"].median(),
+    1,
+    0
+)
+
+ml_df["remote_flag"] = np.where(ml_df["REMOTE_TYPE_NAME"] == "Remote", 1, 0)
+ml_df["hybrid_flag"] = np.where(ml_df["REMOTE_TYPE_NAME"] == "Hybrid Remote", 1, 0)
+ml_df["ai_binary"] = np.where(ml_df["ai_flag"] == "AI-related", 1, 0)
+
+ml_df = ml_df[[
+    "high_salary",
+    "ai_binary",
+    "remote_flag",
+    "hybrid_flag",
+    "MIN_YEARS_EXPERIENCE",
+    "MAX_YEARS_EXPERIENCE",
+    "STATE_NAME",
+    "NAICS2_NAME"
+]]
+
+ml_df = pd.get_dummies(ml_df, columns=["STATE_NAME", "NAICS2_NAME"], drop_first=True)
+
+X = ml_df.drop(columns="high_salary")
+y = ml_df["high_salary"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+rf = RandomForestClassifier(
+    n_estimators=200,
+    max_depth=10,
+    random_state=42
+)
+
+rf.fit(X_train, y_train)
+y_pred = rf.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print(classification_report(y_test, y_pred))
 ```
 
+The machine learning model achieved an accuracy of about 75.7%, suggesting that job attributes in the 2024 postings dataset—such as AI-related status, work arrangement, experience requirements, region, and industry—provide a useful basis for predicting whether a job belongs to the high-salary group. This indicates that salary differences in the 2024 job market were meaningfully associated with observable posting characteristics rather than appearing completely random.
 
-```{python}
+The classification report also shows that the model performed slightly better in identifying high-salary jobs than low-salary jobs. This suggests that the selected features were especially helpful for recognizing better-paid positions in the 2024 labor market, although some classification errors still remained. Overall, the machine learning results reinforce the earlier findings that salary outcomes in 2024 were shaped by multiple factors, including technical specialization, work arrangement, experience, location, and industry.
 
-```
-
-```{python}
-
-```
-
-```{python}
-
-```
