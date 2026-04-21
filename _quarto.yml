@@ -13,6 +13,8 @@ website:
         text: "Data Preparation"
       - href: salary_compensation_trends.qmd
         text: "Salary & Compensation trends"
+      - href: trends.qmd
+        text: "Business Analytics, Data Science, and Machine Learning Trends"
       - href: references.bib
         text: "References"
 
