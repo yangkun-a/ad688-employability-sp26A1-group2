@@ -1,13 +1,19 @@
+name: Publish Quarto Site
+
 on:
   push:
-    # Sequence of patterns matched against refs/heads
     branches:
       - jim
+  workflow_dispatch:
 
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - v2
-      - v1.*
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build-deploy:
@@ -17,27 +23,24 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Create virtual environment
-        uses: actions/setup-python@v6
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-             python-version: '3.13'
-             cache: 'pip' # caching pip dependencies
-      - run: python -m venv .venv
+          python-version: '3.11'
 
-      - name: Activate the venv
-        uses: actions/setup-python@v6
-      - run: source .venv/bin/activate
-        
-
-      - name: Install all packages
-        uses: actions/setup-python@v6
-      - run: pip install -r requirements.txt
+      - name: Install Python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter pandas numpy plotly statsmodels scikit-learn
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render site
         uses: quarto-dev/quarto-actions/render@v2
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
