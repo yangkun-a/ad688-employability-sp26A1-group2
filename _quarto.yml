@@ -13,7 +13,8 @@ website:
         text: "Data Preparation"
       - href: salary_compensation_trends.qmd
         text: "Salary & Compensation trends"
-
+      - href: references.bib
+        text: "References"
 
 format:
   html:
