@@ -18,7 +18,7 @@ plt.xticks(rotation=45)
 plt.show()
 ```
 
-### The skill analysis shows that the most in-demand skills in 2024 will be a combination of technical and business-oriented capabilities. The highest-ranking skills are communication and data analysis, followed by management, SQL, problem solving and computer science. This suggests that employers are seeking candidates who can interpret data, communicate insights, and contribute to business decision-making, as well as those with technical proficiency. Therefore, the combination of analytical and interpersonal skills is critical in the current job market.
+The skill analysis shows that the most in-demand skills in 2024 will be a combination of technical and business-oriented capabilities. The highest-ranking skills are communication and data analysis, followed by management, SQL, problem solving and computer science. This suggests that employers are seeking candidates who can interpret data, communicate insights, and contribute to business decision-making, as well as those with technical proficiency. Therefore, the combination of analytical and interpersonal skills is critical in the current job market.
 
 ## 2.5.2 AI / ML Requirements
 ```{python}
@@ -32,7 +32,7 @@ ai_ratio = df['AI_JOB'].mean()
 
 print("AI-related job percentage:", round(ai_ratio * 100, 2), "%")
 ```
-### The results show that around 28.4% of job advertisements require skills related to AI or machine learning, such as Python, machine learning, data science or artificial intelligence. This suggests that AI and machine learning capabilities are becoming increasingly prevalent across a wide range of business analytics and data-related roles. Instead, they are increasingly expected in a variety of business analytics and data-related roles. Having AI-related skills is becoming a significant competitive advantage in the job market in 2024.
+The results show that around 28.4% of job advertisements require skills related to AI or machine learning, such as Python, machine learning, data science or artificial intelligence. This suggests that AI and machine learning capabilities are becoming increasingly prevalent across a wide range of business analytics and data-related roles. Instead, they are increasingly expected in a variety of business analytics and data-related roles. Having AI-related skills is becoming a significant competitive advantage in the job market in 2024.
 
 ## 2.5.3 Industry
 ```{python}
@@ -71,8 +71,7 @@ plt.ylabel("Frequency")
 plt.tight_layout()
 plt.show()
 ```
-### After removing the extreme outliers, the salary analysis revealed that both the average and median salaries were within a realistic and competitive range. The distribution indicates that most roles offer good pay, with higher salaries typically associated with more advanced or specialised positions. This indicates that the career outlook for business analytics professionals remains highly positive. As organisations continue to rely on data and AI technologies, the demand for skilled professionals is expected to grow, leading to strong salary prospects and long-term career stability.
+After removing the extreme outliers, the salary analysis revealed that both the average and median salaries were within a realistic and competitive range. The distribution indicates that most roles offer good pay, with higher salaries typically associated with more advanced or specialised positions. This indicates that the career outlook for business analytics professionals remains highly positive. As organisations continue to rely on data and AI technologies, the demand for skilled professionals is expected to grow, leading to strong salary prospects and long-term career stability.
 
-## Summary:
-
-### Overall, the analysis reveals a clear trend towards data-driven and AI-integrated roles in the modern job market. Employers are increasingly demanding a combination of technical skills, business understanding and communication ability. Concurrently, AI-related capabilities are becoming prevalent in job advertisements, suggesting a transition towards automation and intelligent decision-making. Together with strong industry demand and competitive salaries, the outlook for business analytics professionals in 2024 is extremely positive.
+Summary:
+Overall, the analysis reveals a clear trend towards data-driven and AI-integrated roles in the modern job market. Employers are increasingly demanding a combination of technical skills, business understanding and communication ability. Concurrently, AI-related capabilities are becoming prevalent in job advertisements, suggesting a transition towards automation and intelligent decision-making. Together with strong industry demand and competitive salaries, the outlook for business analytics professionals in 2024 is extremely positive.
