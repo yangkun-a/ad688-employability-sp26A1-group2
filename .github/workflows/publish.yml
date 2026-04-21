@@ -31,7 +31,7 @@ jobs:
       - name: Install Python packages
         run: |
           python -m pip install --upgrade pip
-          pip install jupyter pandas numpy plotly statsmodels scikit-learn
+          pip install jupyter pandas numpy plotly statsmodels scikit-learn matplotlib
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
