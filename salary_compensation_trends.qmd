@@ -46,7 +46,7 @@ ai_keywords = [
     "data scientist", "machine learning engineer", "ai engineer"
 ]
 
-df["TITLE_CLEAN"] = df["TITLE_CLEAN"].astype(str)
+df["TITLE_CLEAN"] = df["TITLE_CLEAN"].fillna("").astype(str)
 
 df["ai_flag"] = df["TITLE_CLEAN"].str.lower().apply(
     lambda x: "AI-related" if any(k in x for k in ai_keywords) else "Non-AI"
@@ -68,6 +68,7 @@ fig = px.bar(
 )
 fig.show()
 ```
+
 The bar chart shows that AI-related careers have a slightly higher average annual salary than non-AI careers. 
 In this sample, the average salary for AI-related roles is around 120k, while non-AI roles are slightly lower at about 116k. 
 This suggests that jobs involving AI and machine learning skills tend to be compensated at a somewhat higher level.
