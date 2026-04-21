@@ -190,7 +190,7 @@ The goal is to keep the most relevant variables, remove duplicate records, stand
 <section id="import-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="import-libraries">Import libraries</h2>
 <p>We first import the Python libraries needed for data processing. Then we load the raw Lightcast job postings dataset.</p>
-<div id="88a4e9a3" class="cell" data-execution_count="1">
+<div id="8f543775" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -200,7 +200,7 @@ The goal is to keep the most relevant variables, remove duplicate records, stand
 <pre><code>Original shape: (72498, 131)</code></pre>
 </div>
 </div>
-<div id="7d50041a" class="cell" data-execution_count="2">
+<div id="98847a36" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>keep_cols <span class="op">=</span> [</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ID"</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"POSTED"</span>,</span>
@@ -236,7 +236,7 @@ The goal is to keep the most relevant variables, remove duplicate records, stand
 </div>
 </div>
 <p>Some job postings may appear more than once in the dataset. To avoid double-counting, I remove duplicate rows based on the unique job ID. Also, some missing values appear as blank strings instead of standard missing values. This step converts blank entries to NaN so they can be handled consistently.</p>
-<div id="54892a90" class="cell" data-execution_count="3">
+<div id="29d0d1ab" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop_duplicates(subset<span class="op">=</span><span class="st">"ID"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape after removing duplicates:"</span>, df.shape)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -247,7 +247,7 @@ The goal is to keep the most relevant variables, remove duplicate records, stand
 </div>
 <p>The salary information is not always stored in the same way. Some postings include a single salary value, while others include only a salary range.</p>
 <p>The function below creates salary_clean using the following logic:</p>
-<div id="d69fc5d8" class="cell" data-execution_count="4">
+<div id="130d8c59" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_salary(row):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.notna(row[<span class="st">"SALARY"</span>]):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> row[<span class="st">"SALARY"</span>]</span>
@@ -263,7 +263,7 @@ The goal is to keep the most relevant variables, remove duplicate records, stand
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"salary_clean"</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_salary, axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The cleaned salary values still use different pay periods such as year, month, week, day, and hour. To make the salary values comparable, I convert all of them to annual salary.</p>
-<div id="42de8271" class="cell" data-execution_count="5">
+<div id="85814ff9" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smart_convert(row):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    salary <span class="op">=</span> row[<span class="st">"salary_clean"</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    period <span class="op">=</span> <span class="bu">str</span>(row[<span class="st">"ORIGINAL_PAY_PERIOD"</span>]).lower()</span>
@@ -293,10 +293,10 @@ The goal is to keep the most relevant variables, remove duplicate records, stand
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"salary_annual"</span>].between(<span class="dv">20000</span>, <span class="dv">720000</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized.</p>
-<div id="6a0b5a76" class="cell" data-execution_count="6">
+<div id="4587675c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"REMOTE_TYPE_NAME"</span>] <span class="op">=</span> df[<span class="st">"REMOTE_TYPE_NAME"</span>].replace(<span class="st">"[None]"</span>, np.nan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="3554ee9f" class="cell" data-execution_count="7">
+<div id="dccb9fce" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ast</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -354,7 +354,7 @@ The goal is to keep the most relevant variables, remove duplicate records, stand
 <p>The skills variable is stored as a string representation of a list.<br>
 To make it usable for analysis, I convert it into a proper list format and then expand it so that each row contains one skill.</p>
 <p>Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.</p>
-<div id="055596a9" class="cell" data-execution_count="8">
+<div id="e553c876" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">"salary_annual"</span>].notna()]</span>
@@ -370,9 +370,9 @@ Cleaned dataset saved successfully.</code></pre>
 </div>
 </div>
 <p>The cleaned dataset is now ready for later analysis.</p>
-<div id="c1aa923a" class="cell" data-execution_count="9">
+<div id="6d11ecd3" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 
 
@@ -531,11 +531,11 @@ Cleaned dataset saved successfully.</code></pre>
 </div>
 </div>
 </div>
-<div id="40e217eb" class="cell" data-execution_count="10">
+<div id="1787b1f4" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/processed/lightcast_cleaned.csv'</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
 
