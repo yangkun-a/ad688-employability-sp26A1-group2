@@ -311,3 +311,4 @@ print(classification_report(y_test, y_pred))
 The machine learning model achieved an accuracy of about 75.7%, indicating that job characteristics in the 2024 postings dataset can reasonably predict whether a position is high-paying. Features such as AI-related status, remote work, experience requirements, region, and industry appear to capture meaningful salary patterns in the 2024 job market.
 
 The model performed slightly better at identifying high-salary jobs than low-salary jobs, which suggests that these features are particularly informative for recognizing better-paid roles. Overall, the machine learning results support the earlier regression analysis by showing that salary differences in 2024 were associated with multiple job-related factors rather than a single variable alone.
+
