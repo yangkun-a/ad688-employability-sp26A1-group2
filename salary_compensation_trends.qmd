@@ -312,3 +312,39 @@ The machine learning model achieved an accuracy of about 75.7%, indicating that 
 
 The model performed slightly better at identifying high-salary jobs than low-salary jobs, which suggests that these features are particularly informative for recognizing better-paid roles. Overall, the machine learning results support the earlier regression analysis by showing that salary differences in 2024 were associated with multiple job-related factors rather than a single variable alone.
 
+## 8. Do AI-related jobs offer higher salaries than non-AI jobs?
+
+```{python}
+ai_salary_summary = (
+    df.dropna(subset=["salary_annual", "ai_flag"])
+      .groupby("ai_flag")["salary_annual"]
+      .agg(["count", "mean", "median"])
+      .reset_index()
+)
+
+ai_salary_summary
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plot_df = df.dropna(subset=["salary_annual", "ai_flag"]).copy()
+
+plt.figure(figsize=(8, 5))
+sns.boxplot(
+    data=plot_df,
+    x="ai_flag",
+    y="salary_annual"
+)
+
+plt.title("Annual Salary Distribution by AI Job Status")
+plt.xlabel("Job Type")
+plt.ylabel("Annual Salary")
+plt.xticks(rotation=0)
+plt.show()
+```
+
+The summary statistics show that AI-related job postings have a slightly higher average and median salary than non-AI postings. AI-related jobs have a mean annual salary of about $120,716 and a median salary of $119,500, compared with a mean of about $116,143 and a median of $114,000 for non-AI jobs. This suggests that AI-related jobs tend to offer somewhat higher compensation, which aligns with broader labor market trends showing increasing demand and value for AI-related skills [@lightcast2024; @bls_ai2024].
+
+The boxplot shows that the salary distributions for AI-related and non-AI jobs are fairly similar, though AI-related jobs have a slightly higher median. Both groups include high-salary outliers, so the difference is not extremely large. This result should be interpreted cautiously because salary may also depend on experience, industry, location, and remote-work status. These findings are also consistent with research highlighting the economic impact and productivity gains associated with AI adoption [@mckinsey_ai2024].
