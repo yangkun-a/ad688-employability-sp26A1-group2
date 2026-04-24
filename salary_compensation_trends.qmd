@@ -327,15 +327,17 @@ ai_salary_summary
 
 ```{python}
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 plot_df = df.dropna(subset=["salary_annual", "ai_flag"]).copy()
 
 plt.figure(figsize=(8, 5))
-sns.boxplot(
-    data=plot_df,
-    x="ai_flag",
-    y="salary_annual"
+
+ai_salary = plot_df[plot_df["ai_flag"] == "AI-related"]["salary_annual"]
+non_ai_salary = plot_df[plot_df["ai_flag"] == "Non-AI"]["salary_annual"]
+
+plt.boxplot(
+    [ai_salary, non_ai_salary],
+    labels=["AI-related", "Non-AI"]
 )
 
 plt.title("Annual Salary Distribution by AI Job Status")
