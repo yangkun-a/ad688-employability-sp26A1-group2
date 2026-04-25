@@ -23,9 +23,10 @@ The table below shows the first five rows of the original dataset before any cle
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("data/raw/lightcast_job_postings.csv", low_memory=False)
+raw_preview = pd.read_csv("data/processed/raw_preview.csv")
+raw_preview
 
-df.head()
+df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 ```
 
 ## Data Cleaning Process
@@ -53,6 +54,8 @@ Finally, minor text cleaning is applied to remove extra spaces and correct encod
 
 
 ```{python}
+#| eval: false
+
 keep_cols = [
     "ID",
     "POSTED",
@@ -91,6 +94,7 @@ df = df[keep_cols].copy()
 # This step converts blank entries to NaN so they can be handled consistently.
 
 ```{python}
+#| eval: false
 df = df.drop_duplicates(subset="ID")
 
 
@@ -104,6 +108,7 @@ df = df.replace(r"^\s*$", np.nan, regex=True)
 # The function below creates salary_clean using the following logic:
 
 ```{python}
+#| eval: false
 def get_salary(row):
     if pd.notna(row["SALARY"]):
         return row["SALARY"]
@@ -125,6 +130,8 @@ df["salary_clean"] = df.apply(get_salary, axis=1)
 # Because the pay period labels are not always reliable, I use a rule-based conversion approach to create a comparable annual salary variable.
 
 ```{python}
+#| eval: false
+
 def smart_convert(row):
     salary = row["salary_clean"]
     period = str(row["ORIGINAL_PAY_PERIOD"]).lower()
@@ -156,11 +163,15 @@ df = df[df["salary_annual"].between(20000, 720000)]
 # Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly,daily, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized. Based on my research, I established the thresholds outlined above; these serve to minimize the impact on the data while simultaneously filtering out erroneous input values.
 
 ```{python}
+#| eval: false
+
 df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
 
 ```
 
 ```{python}
+#| eval: false
+
 import ast
 import re
 
@@ -219,7 +230,9 @@ for col in text_cols:
 # To make them usable for later analysis, I parse these values, remove duplicates, and convert them into a consistent comma-separated format.
 
 # Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
+
 ```{python}
+#| eval: false
 from pathlib import Path
 
 df = df[df["salary_annual"].notna()]
