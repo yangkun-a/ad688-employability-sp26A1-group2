@@ -13,20 +13,14 @@ execute:
 This section summarizes the data cleaning process applied to the Lightcast job postings dataset.  
 The goal is to create a consistent and reliable annual salary variable and prepare the data for analysis.
 
-## Raw Data Preview
-
-The table below shows the first five rows of the original dataset before any cleaning steps.
 
 ```{python}
-
 
 import pandas as pd
 import numpy as np
 
-raw_preview = pd.read_csv("data/processed/raw_preview.csv")
-raw_preview
+#df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 
-df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 ```
 
 ## Data Cleaning Process
@@ -160,7 +154,7 @@ def smart_convert(row):
 df["salary_annual"] = df.apply(smart_convert, axis=1)
 df = df[df["salary_annual"].between(20000, 720000)]
 ```
-# Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly,daily, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized. Based on my research, I established the thresholds outlined above; these serve to minimize the impact on the data while simultaneously filtering out erroneous input values.
+# Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly, daily, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized. Based on my research, I established the thresholds outlined above; these serve to minimize the impact on the data while simultaneously filtering out erroneous input values.
 
 ```{python}
 #| eval: false
@@ -252,6 +246,8 @@ The table below shows the first five rows after data cleaning.
 #The cleaned dataset is now ready for later analysis.
 
 ```{python}
+
+df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 df.head()
 ```
 
