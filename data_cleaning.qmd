@@ -80,12 +80,12 @@ keep_cols = [
 
 df = df[keep_cols].copy()
 
-```
-
 # Some job postings may appear more than once in the dataset.
 # To avoid double-counting, I remove duplicate rows based on the unique job ID.
 # Also, some missing values appear as blank strings instead of standard missing values.
 # This step converts blank entries to NaN so they can be handled consistently.
+
+```
 
 ```{python}
 #| eval: false
@@ -96,13 +96,15 @@ df = df.replace(r"^\s*$", np.nan, regex=True)
 
 ```
 
+
+```{python}
+#| eval: false
+
 # The salary information is not always stored in the same way.
 # Some postings include a single salary value, while others include only a salary range.
 
 # The function below creates salary_clean using the following logic:
 
-```{python}
-#| eval: false
 def get_salary(row):
     if pd.notna(row["SALARY"]):
         return row["SALARY"]
@@ -120,11 +122,11 @@ df["salary_clean"] = df.apply(get_salary, axis=1)
 
 ```
 
-# The salary field still contains different pay periods such as year, month, week, day, and hour.
-# Because the pay period labels are not always reliable, I use a rule-based conversion approach to create a comparable annual salary variable.
-
 ```{python}
 #| eval: false
+
+# The salary field still contains different pay periods such as year, month, week, day, and hour.
+# Because the pay period labels are not always reliable, I use a rule-based conversion approach to create a comparable annual salary variable.
 
 def smart_convert(row):
     salary = row["salary_clean"]
@@ -153,11 +155,14 @@ def smart_convert(row):
 
 df["salary_annual"] = df.apply(smart_convert, axis=1)
 df = df[df["salary_annual"].between(20000, 720000)]
-```
+
 # Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly, daily, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized. Based on my research, I established the thresholds outlined above; these serve to minimize the impact on the data while simultaneously filtering out erroneous input values.
+
+```
 
 ```{python}
 #| eval: false
+
 
 df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
 
@@ -219,11 +224,13 @@ text_cols = ["COMPANY_NAME", "TITLE_RAW", "TITLE_CLEAN", "CITY_NAME", "STATE_NAM
 
 for col in text_cols:
     df[col] = df[col].apply(fix_encoding)
-```
+
 # Several skills-related fields are stored as string representations of lists.
 # To make them usable for later analysis, I parse these values, remove duplicates, and convert them into a consistent comma-separated format.
 
 # Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
+
+```
 
 ```{python}
 #| eval: false
@@ -243,9 +250,10 @@ print("Cleaned dataset saved successfully.")
 The table below shows the first five rows after data cleaning.
 
 
-#The cleaned dataset is now ready for later analysis.
+
 
 ```{python}
+#The cleaned dataset is now ready for later analysis.
 
 df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 df.head()
