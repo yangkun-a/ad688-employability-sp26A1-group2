@@ -3,29 +3,54 @@ title: "Data Cleaning"
 format: html
 jupyter: python3
 execute:
-  echo: true
-  eval: false
+  echo: false
   warning: false
   message: false
 ---
 
 ## Overview
 
-This section describes the data cleaning process for the Lightcast job postings dataset.  
-The goal is to keep the most relevant variables, remove duplicate records, standardize missing values, and create a consistent annual salary variable for later analysis.
+This section summarizes the data cleaning process applied to the Lightcast job postings dataset.  
+The goal is to create a consistent and reliable annual salary variable and prepare the data for analysis.
 
-## Import libraries
+## Raw Data Preview
 
-We first import the Python libraries needed for data processing.
-Then we load the raw Lightcast job postings dataset.
+The table below shows the first five rows of the original dataset before any cleaning steps.
 
 ```{python}
+
+
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
-print("Original shape:", df.shape)
+df = pd.read_csv("data/raw/lightcast_job_postings.csv", low_memory=False)
+
+df.head()
 ```
+
+## Data Cleaning Process
+
+The data cleaning process consists of several key steps.
+
+First, duplicate job postings are removed based on the unique job ID, and blank values are converted into standard missing values.
+
+Next, a unified salary variable (`salary_clean`) is created. Since salary information is stored in different formats (single value or range), the midpoint of the range is used when both lower and upper bounds are available.
+
+The dataset contains inconsistent pay period labels (e.g., hourly, daily, weekly, monthly, yearly). To address this issue, a rule-based conversion approach is applied to standardize salaries into annual values.
+
+Only values within reasonable ranges are converted:
+- hourly wages below 500 are converted using 2080 hours per year  
+- daily wages below 4000 are converted using 260 working days  
+- weekly wages below 20000 are converted using 52 weeks  
+- monthly wages below 60000 are converted using 12 months  
+
+Values exceeding these thresholds are treated as already annualized.  
+Extreme salary values outside the range of 20,000 to 720,000 are removed to reduce the impact of outliers and erroneous entries.
+
+In addition, several text-based fields (such as skills and education) are cleaned. These fields are originally stored as string representations of lists. They are parsed, cleaned, deduplicated, and converted into a consistent comma-separated format.
+
+Finally, minor text cleaning is applied to remove extra spaces and correct encoding issues.
+
 
 ```{python}
 keep_cols = [
@@ -57,26 +82,26 @@ keep_cols = [
 ]
 
 df = df[keep_cols].copy()
-print("Shape after selecting columns:", df.shape)
+
 ```
 
-Some job postings may appear more than once in the dataset.
-To avoid double-counting, I remove duplicate rows based on the unique job ID.
-Also, some missing values appear as blank strings instead of standard missing values.
-This step converts blank entries to NaN so they can be handled consistently.
+# Some job postings may appear more than once in the dataset.
+# To avoid double-counting, I remove duplicate rows based on the unique job ID.
+# Also, some missing values appear as blank strings instead of standard missing values.
+# This step converts blank entries to NaN so they can be handled consistently.
 
 ```{python}
 df = df.drop_duplicates(subset="ID")
-print("Shape after removing duplicates:", df.shape)
+
 
 df = df.replace(r"^\s*$", np.nan, regex=True)
 
 ```
 
-The salary information is not always stored in the same way.
-Some postings include a single salary value, while others include only a salary range.
+# The salary information is not always stored in the same way.
+# Some postings include a single salary value, while others include only a salary range.
 
-The function below creates salary_clean using the following logic:
+# The function below creates salary_clean using the following logic:
 
 ```{python}
 def get_salary(row):
@@ -96,9 +121,8 @@ df["salary_clean"] = df.apply(get_salary, axis=1)
 
 ```
 
-The cleaned salary values still use different pay periods such as year, month, week, day, and hour.
-To make the salary values comparable, I convert all of them to annual salary.
-
+# The salary field still contains different pay periods such as year, month, week, day, and hour.
+# Because the pay period labels are not always reliable, I use a rule-based conversion approach to create a comparable annual salary variable.
 
 ```{python}
 def smart_convert(row):
@@ -129,7 +153,7 @@ def smart_convert(row):
 df["salary_annual"] = df.apply(smart_convert, axis=1)
 df = df[df["salary_annual"].between(20000, 720000)]
 ```
-Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized.
+# Because the pay period field is inconsistent, I use a rule-based conversion approach. Only values that fall within a plausible range for hourly,daily, weekly, or monthly pay are converted to annual salary. Larger values are treated as already annualized. Based on my research, I established the thresholds outlined above; these serve to minimize the impact on the data while simultaneously filtering out erroneous input values.
 
 ```{python}
 df["REMOTE_TYPE_NAME"] = df["REMOTE_TYPE_NAME"].replace("[None]", np.nan)
@@ -191,11 +215,10 @@ text_cols = ["COMPANY_NAME", "TITLE_RAW", "TITLE_CLEAN", "CITY_NAME", "STATE_NAM
 for col in text_cols:
     df[col] = df[col].apply(fix_encoding)
 ```
-The skills variable is stored as a string representation of a list.  
-To make it usable for analysis, I convert it into a proper list format and then expand it so that each row contains one skill.
+# Several skills-related fields are stored as string representations of lists.
+# To make them usable for later analysis, I parse these values, remove duplicates, and convert them into a consistent comma-separated format.
 
-
-Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
+# Since salary analysis requires a comparable salary measure, I remove rows that still do not have a valid annual salary after the conversion step.
 ```{python}
 from pathlib import Path
 
@@ -209,13 +232,13 @@ print("Cleaned dataset saved successfully.")
 
 ```
 
-The cleaned dataset is now ready for later analysis.
+## Cleaned Data Preview
+The table below shows the first five rows after data cleaning.
+
+
+#The cleaned dataset is now ready for later analysis.
+
 ```{python}
 df.head()
 ```
 
-```{python}
-import pandas as pd 
-df = pd.read_csv('data/processed/lightcast_cleaned.csv')
-df.head()
-```
