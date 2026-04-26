@@ -21,6 +21,8 @@ format:
     theme: cosmo
     toc: true
 execute:
-  echo: true
+  echo: false
   eval: true
   code-fold: true
+  warning: false
+  message: false
