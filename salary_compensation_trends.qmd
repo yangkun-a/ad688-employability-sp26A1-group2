@@ -28,11 +28,12 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 
 df = pd.read_csv("data/processed/lightcast_cleaned.csv")
-df.head()
 
 df["POSTED"] = pd.to_datetime(df["POSTED"], errors="coerce")
 df["post_month"] = df["POSTED"].dt.to_period("M").astype(str)
 df["post_year"] = df["POSTED"].dt.year
+
+df.head()
 ```
 
 ## 1. How do salaries differ across AI vs. non-AI careers
