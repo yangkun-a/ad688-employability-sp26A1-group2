@@ -4,6 +4,7 @@ author: "Team 2"
 date: "April 27, 2026"
 title-block-banner: false
 page-layout: full
+toc: false
 ---
 
 ::: {.hero-banner}
