@@ -1,15 +1,12 @@
 ---
 title: "Data Cleaning"
 format: html
-body-classes: data-cleaning-page
 jupyter: python3
 execute:
   echo: false
   warning: false
   message: false
 ---
-
-<div class="dc-title-badge">Data Cleaning</div>
 
 ## Overview
 
