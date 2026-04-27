@@ -16,8 +16,8 @@
 }
 
 #quarto-header .navbar {
-  min-height: 88px;
-  padding: 0 1.25rem;
+  min-height: 82px;
+  padding: 0 1rem;
   background: transparent !important;
 }
 
@@ -27,8 +27,9 @@
 
 #quarto-header .navbar-brand {
   color: #3f3f46;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 #quarto-header .navbar-brand:hover,
@@ -41,18 +42,19 @@
 }
 
 #quarto-header .navbar-nav {
-  gap: 1.1rem;
+  gap: 0.7rem;
   align-items: center;
 }
 
 #quarto-header .nav-link {
   position: relative;
-  padding: 1.7rem 0.2rem 1.45rem;
+  padding: 1.55rem 0.15rem 1.35rem;
   color: #3f3f46 !important;
-  font-size: 1rem;
+  font-size: 0.94rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.18s ease;
+  white-space: nowrap;
 }
 
 #quarto-header .nav-link:hover,

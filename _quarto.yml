@@ -6,13 +6,13 @@ website:
   navbar:
     left:
       - href: introduction.qmd
-        text: "Project Overview"
+        text: "Overview"
       - href: data_cleaning.qmd
-        text: "Data Preparation"
+        text: "Data Prep"
       - href: salary_compensation_trends.qmd
-        text: "Salary & Compensation trends"
+        text: "Salary Trends"
       - href: trends.qmd
-        text: "Business Analytics, Data Science, and Machine Learning Trends"
+        text: "Career Trends"
       - href: references.bib
         text: "References"
 
