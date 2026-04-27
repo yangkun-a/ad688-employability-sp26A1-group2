@@ -1,13 +1,19 @@
+---
+title: "Job Market Analysis 2024"
+author: "Team 2"
+date: "April 27, 2026"
+title-block-banner: false
+---
 ::: {.hero-banner}
-::: {.hero-content}
+::: {.hero-text}
 # Job Market Analysis 2024
 
 ## AI, Salary, Skills, and Employment Trends
 
-This project analyzes 2024 job posting data to understand how AI-related careers, compensation, skills, locations, and work arrangements shape the modern labor market.
-:::
-:::
+This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.
+
 [Explore the Analysis](salary_compensation_trends.html){.hero-button}
+:::
 :::
 
 ## Project Guide
@@ -17,22 +23,22 @@ This website is organized into several sections. Start with the project overview
 ::: {.guide-grid}
 
 ::: {.guide-card}
-### Project Overview  
+### Project Overview
 Introduces the purpose of the project and the main research questions.
 :::
 
 ::: {.guide-card}
-### Data Preparation  
+### Data Preparation
 Explains how the raw Lightcast job posting data was cleaned and transformed.
 :::
 
 ::: {.guide-card}
-### Salary & Compensation Trends  
+### Salary & Compensation Trends
 Compares AI vs. non-AI salaries, remote work pay, regional differences, and wage growth.
 :::
 
 ::: {.guide-card}
-### Career & Skill Trends  
+### Career & Skill Trends
 Analyzes business analytics, data science, and machine learning job trends.
 :::
 

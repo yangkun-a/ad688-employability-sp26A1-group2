@@ -1,0 +1,177 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Job Market Analysis 2024",
+    "section": "",
+    "text": "This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.\nExplore the Analysis"
+  },
+  {
+    "objectID": "index.html#ai-salary-skills-and-employment-trends",
+    "href": "index.html#ai-salary-skills-and-employment-trends",
+    "title": "Job Market Analysis 2024",
+    "section": "",
+    "text": "This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.\nExplore the Analysis"
+  },
+  {
+    "objectID": "index.html#project-guide",
+    "href": "index.html#project-guide",
+    "title": "Job Market Analysis 2024",
+    "section": "Project Guide",
+    "text": "Project Guide\nThis website is organized into several sections. Start with the project overview to understand the dataset and research goals, then move through data preparation, salary trends, and career-skill analysis.\n\n\nProject Overview\nIntroduces the purpose of the project and the main research questions.\n\n\nData Preparation\nExplains how the raw Lightcast job posting data was cleaned and transformed.\n\n\nSalary & Compensation Trends\nCompares AI vs. non-AI salaries, remote work pay, regional differences, and wage growth.\n\n\nCareer & Skill Trends\nAnalyzes business analytics, data science, and machine learning job trends."
+  },
+  {
+    "objectID": "salary_compensation_trends.html",
+    "href": "salary_compensation_trends.html",
+    "title": "Salary & Compensation trends",
+    "section": "",
+    "text": "This section focuses on the following questions:\n\nHow do salaries differ across AI vs. non-AI careers?\nWhat regions offer the highest-paying jobs in AI-related and traditional careers?\nAre remote jobs better paying than in-office roles?\nHow did salary levels change over time in 2024?\nWhat industries saw the biggest wage growth in 2024?\nWhich job characteristics are most strongly associated with salary?\nCan machine learning predict whether a job is high-paying?"
+  },
+  {
+    "objectID": "salary_compensation_trends.html#research-questions",
+    "href": "salary_compensation_trends.html#research-questions",
+    "title": "Salary & Compensation trends",
+    "section": "",
+    "text": "This section focuses on the following questions:\n\nHow do salaries differ across AI vs. non-AI careers?\nWhat regions offer the highest-paying jobs in AI-related and traditional careers?\nAre remote jobs better paying than in-office roles?\nHow did salary levels change over time in 2024?\nWhat industries saw the biggest wage growth in 2024?\nWhich job characteristics are most strongly associated with salary?\nCan machine learning predict whether a job is high-paying?"
+  },
+  {
+    "objectID": "salary_compensation_trends.html#load-data",
+    "href": "salary_compensation_trends.html#load-data",
+    "title": "Salary & Compensation trends",
+    "section": "Load Data",
+    "text": "Load Data\n\n\n\n\n\n\n\n\n\nID\nPOSTED\nEXPIRED\nDURATION\nTITLE_RAW\nTITLE_CLEAN\nCOMPANY_NAME\nSALARY\nSALARY_FROM\nSALARY_TO\n...\nSPECIALIZED_SKILLS_NAME\nCOMMON_SKILLS_NAME\nSOFTWARE_SKILLS_NAME\nMIN_YEARS_EXPERIENCE\nMAX_YEARS_EXPERIENCE\nEDUCATION_LEVELS_NAME\nsalary_clean\nsalary_annual\npost_month\npost_year\n\n\n\n\n0\ncb5ca25f02bdf25c13edfede7931508bfd9e858f\n2024-06-02\n6/17/2024\n15.0\nComisiones de $1000 - $3000 por semana... Comi...\ncomisiones de por semana comiensa rapido\nUnclassified\n92500.0\n35000.0\n150000.0\n...\nNaN\nNaN\nNaN\nNaN\nNaN\nNo Education Listed\n92500.0\n92500.0\n2024-06\n2024\n\n\n1\n35a6cd2183d9fb270e3f504b270f36d43cb759a6\n2024-06-02\n6/12/2024\n10.0\nSR Lead Data Analyst\nsr lead data analyst\nLumen Technologies\n110155.0\n94420.0\n125890.0\n...\nPower BI, Qlik Sense (Data Analytics Software)...\nPresentations, Data Reporting, Operations\nPower BI, Qlik Sense (Data Analytics Software)...\nNaN\nNaN\nBachelor's degree\n110155.0\n110155.0\n2024-06\n2024\n\n\n2\n229620073766234e814e8add21db7dfaef69b3bd\n2024-06-02\n8/1/2024\nNaN\nSr. Marketing Analyst\nsr marketing analyst\nDassault Systèmes\n92962.0\n79500.0\n106424.0\n...\nSalesforce, Google Docs, Productivity Software...\nPrioritization, Google Sheets, Microsoft Power...\nSalesforce, Google Docs, Productivity Software...\n2.0\n2.0\nBachelor's degree, Master's degree\n92962.0\n92962.0\n2024-06\n2024\n\n\n3\nb7aa80a24c82f080cca31a8b5b720824eb2b71f3\n2024-06-02\n9/27/2024\nNaN\nData Analyst\ndata analyst\nDCS Corporation\n107645.0\n91559.0\n123732.0\n...\nRegression Testing, Flight Testing, Test Metho...\nResearch, Information Technology, Communicatio...\nPython (Programming Language), Visual Basic (P...\n10.0\nNaN\nHigh school or GED, Associate degree, Bachelor...\n107645.0\n107645.0\n2024-06\n2024\n\n\n4\n57b527ea0f91db5bb17f82ff3d34dcdb7afe5c13\n2024-06-02\n7/27/2024\n55.0\nPower, Utilities & Renewables Consulting Manag...\npower utilities renewables consulting manager ...\nDeloitte\n192800.0\n144600.0\n241000.0\n...\nDesign Specifications, Programming Languages, ...\nManagement, Microsoft Word, Mentorship, Leader...\nC++ (Programming Language), IBM Maximo, Micros...\n6.0\nNaN\nBachelor's degree, Master's degree\n192800.0\n192800.0\n2024-06\n2024\n\n\n\n\n5 rows × 29 columns"
+  },
+  {
+    "objectID": "salary_compensation_trends.html#how-do-salaries-differ-across-ai-vs.-non-ai-careers",
+    "href": "salary_compensation_trends.html#how-do-salaries-differ-across-ai-vs.-non-ai-careers",
+    "title": "Salary & Compensation trends",
+    "section": "1. How do salaries differ across AI vs. non-AI careers",
+    "text": "1. How do salaries differ across AI vs. non-AI careers\n\n\n                            \n                                            \n\n\nThe bar chart shows that AI-related careers have a slightly higher average annual salary than non-AI careers. In this sample, the average salary for AI-related roles is around 120k, while non-AI roles are slightly lower at about 116k. This suggests that jobs involving AI and machine learning skills tend to be compensated at a somewhat higher level.\nHowever, the salary gap is not very large, which may indicate that many non-AI positions in the dataset are also high-paying technical or business roles. Overall, the figure supports the idea that AI-related jobs offer a salary premium, but the difference appears to be moderate rather than dramatic."
+  },
+  {
+    "objectID": "salary_compensation_trends.html#what-regions-offer-the-highest-paying-jobs-in-ai-related-and-traditional-careers",
+    "href": "salary_compensation_trends.html#what-regions-offer-the-highest-paying-jobs-in-ai-related-and-traditional-careers",
+    "title": "Salary & Compensation trends",
+    "section": "2. What regions offer the highest-paying jobs in AI-related and traditional careers?",
+    "text": "2. What regions offer the highest-paying jobs in AI-related and traditional careers?\n\n\n                            \n                                            \n\n\nThe chart shows that salary levels vary noticeably across regions, confirming that geography is an important factor in compensation. Among the regions shown, Montana has the highest average salary for AI-related jobs, making it the strongest-paying region for AI-related careers in this comparison. In general, AI-related jobs tend to pay more than non-AI jobs across most of the top-paying regions, suggesting that AI and technical skills receive an additional salary premium in many local labor markets.\nAt the same time, the size of the salary gap differs across regions, which indicates that the value of AI-related skills is not uniform across locations. Overall, the figure suggests that both region and career type jointly influence salary outcomes."
+  },
+  {
+    "objectID": "salary_compensation_trends.html#are-remote-jobs-better-paying-than-in-office-roles",
+    "href": "salary_compensation_trends.html#are-remote-jobs-better-paying-than-in-office-roles",
+    "title": "Salary & Compensation trends",
+    "section": "3. Are remote jobs better paying than in-office roles?",
+    "text": "3. Are remote jobs better paying than in-office roles?\n\n\n                            \n                                            \n\n\nThe chart shows that fully remote jobs have the highest average annual salary, followed by hybrid remote roles, while not remote jobs have the lowest average salary among the three categories. This suggests that remote work is associated with higher-paying positions in this dataset.\nHowever, this result should be interpreted carefully. The higher average salary for remote jobs may reflect the fact that many remote positions are concentrated in high-paying technical or analytical occupations, rather than remote work itself directly causing higher pay. Overall, the figure indicates a positive association between remote work arrangements and salary levels, but other factors such as industry, role type, and experience may also be important."
+  },
+  {
+    "objectID": "salary_compensation_trends.html#how-did-salary-levels-change-over-time-in-2024",
+    "href": "salary_compensation_trends.html#how-did-salary-levels-change-over-time-in-2024",
+    "title": "Salary & Compensation trends",
+    "section": "4. How did salary levels change over time in 2024?",
+    "text": "4. How did salary levels change over time in 2024?\n\n\n                            \n                                            \n\n\nThe line chart shows that AI-related jobs generally maintained higher average salaries than non-AI jobs during most months in 2024. While both groups experienced a decline around July 2024, salaries rose again afterward, especially for AI-related roles. From July to September, the salary gap widened noticeably, with AI-related careers showing stronger upward growth than non-AI careers.\nThis pattern suggests that the salary premium for AI-related jobs was not only persistent over time but also became more pronounced toward the later months in the dataset. Overall, the time analysis indicates that AI-related roles experienced greater salary growth and stronger momentum than non-AI roles in 2024."
+  },
+  {
+    "objectID": "salary_compensation_trends.html#what-industries-saw-the-biggest-wage-growth-in-2024",
+    "href": "salary_compensation_trends.html#what-industries-saw-the-biggest-wage-growth-in-2024",
+    "title": "Salary & Compensation trends",
+    "section": "5. What industries saw the biggest wage growth in 2024?",
+    "text": "5. What industries saw the biggest wage growth in 2024?\n\n\n                            \n                                            \n\n\nThe chart shows that wage growth in 2024 was uneven across industries, with some sectors experiencing much stronger increases than others. Public Administration recorded the largest wage growth among the industries shown, followed by Unclassified Industry and Retail Trade. This suggests that salary growth was concentrated in a limited number of sectors rather than being broadly shared across the labor market.\nThe differences across industries indicate that sector-specific demand, hiring conditions, and labor shortages may have played an important role in shaping wage changes during 2024. Overall, industry appears to be an important dimension for understanding how salary levels evolved over time."
+  },
+  {
+    "objectID": "salary_compensation_trends.html#which-job-characteristics-are-most-strongly-associated-with-salary",
+    "href": "salary_compensation_trends.html#which-job-characteristics-are-most-strongly-associated-with-salary",
+    "title": "Salary & Compensation trends",
+    "section": "6. Which job characteristics are most strongly associated with salary?",
+    "text": "6. Which job characteristics are most strongly associated with salary?\n\n\n\n\n\n\n\n\n\nVariable\nCoefficient\nP-value\n\n\n\n\n0\nAI-related job\n0.056877\n1.036915e-02\n\n\n1\nRemote job\n0.083320\n2.812322e-07\n\n\n2\nMinimum years of experience\n0.054746\n0.000000e+00\n\n\n\n\n\n\n\nThe regression results indicate that several job characteristics are significantly associated with salary after controlling for region and industry.\nFirst, the coefficient for ai_binary is positive and statistically significant (p &lt; 0.05), suggesting that AI-related jobs are associated with higher salaries than non-AI roles. The estimated coefficient implies an approximate 5.7% salary premium.\nSecond, the coefficient for remote_flag is also positive and statistically significant (p &lt; 0.001), indicating that fully remote jobs tend to offer higher salaries, with an estimated premium of about 8.3%.\nFinally, MIN_YEARS_EXPERIENCE has a positive and highly significant relationship with salary (p ≈ 0), meaning that roles requiring more experience are associated with higher pay. Each additional year of minimum required experience corresponds to roughly a 5.5% increase in salary.\nOverall, the regression suggests that AI specialization, remote work, and experience requirements are key predictors of salary in the 2024 job market."
+  },
+  {
+    "objectID": "salary_compensation_trends.html#can-machine-learning-predict-whether-a-job-is-high-paying",
+    "href": "salary_compensation_trends.html#can-machine-learning-predict-whether-a-job-is-high-paying",
+    "title": "Salary & Compensation trends",
+    "section": "7. Can machine learning predict whether a job is high-paying?",
+    "text": "7. Can machine learning predict whether a job is high-paying?\n\n\nAccuracy: 0.7572815533980582\n              precision    recall  f1-score   support\n\n           0       0.71      0.84      0.77       100\n           1       0.82      0.68      0.74       106\n\n    accuracy                           0.76       206\n   macro avg       0.77      0.76      0.76       206\nweighted avg       0.77      0.76      0.76       206\n\n\n\nThe machine learning model achieved an accuracy of about 75.7%, indicating that job characteristics in the 2024 postings dataset can reasonably predict whether a position is high-paying. Features such as AI-related status, remote work, experience requirements, region, and industry appear to capture meaningful salary patterns in the 2024 job market.\nThe model performed slightly better at identifying high-salary jobs than low-salary jobs, which suggests that these features are particularly informative for recognizing better-paid roles. Overall, the machine learning results support the earlier regression analysis by showing that salary differences in 2024 were associated with multiple job-related factors rather than a single variable alone."
+  },
+  {
+    "objectID": "salary_compensation_trends.html#do-ai-related-jobs-offer-higher-salaries-than-non-ai-jobs",
+    "href": "salary_compensation_trends.html#do-ai-related-jobs-offer-higher-salaries-than-non-ai-jobs",
+    "title": "Salary & Compensation trends",
+    "section": "8. Do AI-related jobs offer higher salaries than non-AI jobs?",
+    "text": "8. Do AI-related jobs offer higher salaries than non-AI jobs?\n\n\n\n\n\n\n\n\n\nai_flag\ncount\nmean\nmedian\n\n\n\n\n0\nAI-related\n1370\n120716.155109\n119500.0\n\n\n1\nNon-AI\n31001\n116143.053418\n114000.0\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe summary statistics show that AI-related job postings have a slightly higher average and median salary than non-AI postings. AI-related jobs have a mean annual salary of about $120,716 and a median salary of $119,500, compared with a mean of about $116,143 and a median of $114,000 for non-AI jobs. This suggests that AI-related jobs tend to offer somewhat higher compensation, which aligns with broader labor market trends showing increasing demand and value for AI-related skills [@lightcast2024; @bls_ai2024].\nThe boxplot shows that the salary distributions for AI-related and non-AI jobs are fairly similar, though AI-related jobs have a slightly higher median. Both groups include high-salary outliers, so the difference is not extremely large. This result should be interpreted cautiously because salary may also depend on experience, industry, location, and remote-work status. These findings are also consistent with research highlighting the economic impact and productivity gains associated with AI adoption [@mckinsey_ai2024]."
+  },
+  {
+    "objectID": "trends.html",
+    "href": "trends.html",
+    "title": "2.5.1 Most In-Demand Skills",
+    "section": "",
+    "text": "The skill analysis shows that the most in-demand skills in 2024 will be a combination of technical and business-oriented capabilities. The highest-ranking skills are communication and data analysis, followed by management, SQL, problem solving and computer science. This suggests that employers are seeking candidates who can interpret data, communicate insights, and contribute to business decision-making, as well as those with technical proficiency. Therefore, the combination of analytical and interpersonal skills is critical in the current job market."
+  },
+  {
+    "objectID": "trends.html#ai-ml-requirements",
+    "href": "trends.html#ai-ml-requirements",
+    "title": "2.5.1 Most In-Demand Skills",
+    "section": "2.5.2 AI / ML Requirements",
+    "text": "2.5.2 AI / ML Requirements\n\n\n                            \n                                            \n\n\nThe results show that around 28.4% of job advertisements require skills related to AI or machine learning, such as Python, machine learning, data science or artificial intelligence. This suggests that AI and machine learning capabilities are becoming increasingly prevalent across a wide range of business analytics and data-related roles. Instead, they are increasingly expected in a variety of business analytics and data-related roles. Having AI-related skills is becoming a significant competitive advantage in the job market in 2024."
+  },
+  {
+    "objectID": "trends.html#industry",
+    "href": "trends.html#industry",
+    "title": "2.5.1 Most In-Demand Skills",
+    "section": "2.5.3 Industry",
+    "text": "2.5.3 Industry\n\n\n                            \n                                            \n\n\nIndustry analysis indicates that the Professional, Scientific and Technical Services sector is leading the way in hiring data professionals. Other major industries include finance and insurance, information, manufacturing, and health care. These industries rely heavily on data-driven decision-making, predictive analytics and operational optimisation. Consequently, they continue to generate strong demand for talent in the fields of data science and business analytics."
+  },
+  {
+    "objectID": "trends.html#career-outlook",
+    "href": "trends.html#career-outlook",
+    "title": "2.5.1 Most In-Demand Skills",
+    "section": "2.5.4 Career Outlook",
+    "text": "2.5.4 Career Outlook\n\n\nAverage Salary (cleaned): 115595.69\nMedian Salary (cleaned): 114400.0\n\n\n                            \n                                            \n\n\nAfter removing the extreme outliers, the salary analysis revealed that both the average and median salaries were within a realistic and competitive range. The distribution indicates that most roles offer good pay, with higher salaries typically associated with more advanced or specialised positions. This indicates that the career outlook for business analytics professionals remains highly positive. As organisations continue to rely on data and AI technologies, the demand for skilled professionals is expected to grow, leading to strong salary prospects and long-term career stability.\nSummary: Overall, the analysis reveals a clear trend towards data-driven and AI-integrated roles in the modern job market. Employers are increasingly demanding a combination of technical skills, business understanding and communication ability. Concurrently, AI-related capabilities are becoming prevalent in job advertisements, suggesting a transition towards automation and intelligent decision-making. Together with strong industry demand and competitive salaries, the outlook for business analytics professionals in 2024 is extremely positive."
+  },
+  {
+    "objectID": "data_cleaning.html",
+    "href": "data_cleaning.html",
+    "title": "Data Cleaning",
+    "section": "",
+    "text": "This section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
+  },
+  {
+    "objectID": "data_cleaning.html#overview",
+    "href": "data_cleaning.html#overview",
+    "title": "Data Cleaning",
+    "section": "",
+    "text": "This section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
+  },
+  {
+    "objectID": "data_cleaning.html#data-cleaning-process",
+    "href": "data_cleaning.html#data-cleaning-process",
+    "title": "Data Cleaning",
+    "section": "Data Cleaning Process",
+    "text": "Data Cleaning Process\nThe data cleaning process consists of several key steps.\nFirst, duplicate job postings are removed based on the unique job ID, and blank values are converted into standard missing values.\nNext, a unified salary variable (salary_clean) is created. Since salary information is stored in different formats (single value or range), the midpoint of the range is used when both lower and upper bounds are available.\nThe dataset contains inconsistent pay period labels (e.g., hourly, daily, weekly, monthly, yearly). To address this issue, a rule-based conversion approach is applied to standardize salaries into annual values.\nOnly values within reasonable ranges are converted: - hourly wages below 500 are converted using 2080 hours per year\n- daily wages below 4000 are converted using 260 working days\n- weekly wages below 20000 are converted using 52 weeks\n- monthly wages below 60000 are converted using 12 months\nValues exceeding these thresholds are treated as already annualized.\nExtreme salary values outside the range of 20,000 to 720,000 are removed to reduce the impact of outliers and erroneous entries.\nIn addition, several text-based fields (such as skills and education) are cleaned. These fields are originally stored as string representations of lists. They are parsed, cleaned, deduplicated, and converted into a consistent comma-separated format.\nFinally, minor text cleaning is applied to remove extra spaces and correct encoding issues."
+  },
+  {
+    "objectID": "data_cleaning.html#cleaned-data-preview",
+    "href": "data_cleaning.html#cleaned-data-preview",
+    "title": "Data Cleaning",
+    "section": "Cleaned Data Preview",
+    "text": "Cleaned Data Preview\nThe table below shows the first five rows after data cleaning.\n\n\n\n\n\n\n\n\n\nID\nPOSTED\nEXPIRED\nDURATION\nTITLE_RAW\nTITLE_CLEAN\nCOMPANY_NAME\nSALARY\nSALARY_FROM\nSALARY_TO\n...\nLIGHTCAST_SECTORS_NAME\nSKILLS_NAME\nSPECIALIZED_SKILLS_NAME\nCOMMON_SKILLS_NAME\nSOFTWARE_SKILLS_NAME\nMIN_YEARS_EXPERIENCE\nMAX_YEARS_EXPERIENCE\nEDUCATION_LEVELS_NAME\nsalary_clean\nsalary_annual\n\n\n\n\n0\ncb5ca25f02bdf25c13edfede7931508bfd9e858f\n6/2/2024\n6/17/2024\n15.0\nComisiones de $1000 - $3000 por semana... Comi...\ncomisiones de por semana comiensa rapido\nUnclassified\n92500.0\n35000.0\n150000.0\n...\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\nNo Education Listed\n92500.0\n92500.0\n\n\n1\n35a6cd2183d9fb270e3f504b270f36d43cb759a6\n6/2/2024\n6/12/2024\n10.0\nSR Lead Data Analyst\nsr lead data analyst\nLumen Technologies\n110155.0\n94420.0\n125890.0\n...\nNaN\nPower BI, Presentations, Data Reporting, Qlik ...\nPower BI, Qlik Sense (Data Analytics Software)...\nPresentations, Data Reporting, Operations\nPower BI, Qlik Sense (Data Analytics Software)...\nNaN\nNaN\nBachelor's degree\n110155.0\n110155.0\n\n\n2\n229620073766234e814e8add21db7dfaef69b3bd\n6/2/2024\n8/1/2024\nNaN\nSr. Marketing Analyst\nsr marketing analyst\nDassault Systèmes\n92962.0\n79500.0\n106424.0\n...\nArtificial Intelligence\nSalesforce, Google Docs, Productivity Software...\nSalesforce, Google Docs, Productivity Software...\nPrioritization, Google Sheets, Microsoft Power...\nSalesforce, Google Docs, Productivity Software...\n2.0\n2.0\nBachelor's degree, Master's degree\n92962.0\n92962.0\n\n\n3\nb7aa80a24c82f080cca31a8b5b720824eb2b71f3\n6/2/2024\n9/27/2024\nNaN\nData Analyst\ndata analyst\nDCS Corporation\n107645.0\n91559.0\n123732.0\n...\nNaN\nRegression Testing, Research, Flight Testing, ...\nRegression Testing, Flight Testing, Test Metho...\nResearch, Information Technology, Communicatio...\nPython (Programming Language), Visual Basic (P...\n10.0\nNaN\nHigh school or GED, Associate degree, Bachelor...\n107645.0\n107645.0\n\n\n4\n57b527ea0f91db5bb17f82ff3d34dcdb7afe5c13\n6/2/2024\n7/27/2024\n55.0\nPower, Utilities & Renewables Consulting Manag...\npower utilities renewables consulting manager ...\nDeloitte\n192800.0\n144600.0\n241000.0\n...\nGreen Jobs: Enabled\nDesign Specifications, Programming Languages, ...\nDesign Specifications, Programming Languages, ...\nManagement, Microsoft Word, Mentorship, Leader...\nC++ (Programming Language), IBM Maximo, Micros...\n6.0\nNaN\nBachelor's degree, Master's degree\n192800.0\n192800.0\n\n\n\n\n5 rows × 27 columns"
+  },
+  {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Job Market Analysis 2024",
+    "section": "",
+    "text": "Artificial intelligence (AI) is rapidly changing the global labor market. It is affecting job demand, required skills, and wage structures. Many industries are now integrating AI into their daily operations. This change is not only about automation. It is also about how work is performed and valued.\nThis project focuses on two key areas. The first area is salary and compensation trends. The second area is the growing importance of business analytics, data science, and machine learning skills. Recent studies show that AI is changing both job types and pay levels. Workers with technical and data skills often receive higher salaries.\nAt the same time, AI raises concerns about job displacement and inequality. AI can improve productivity and create new opportunities. However, it can also widen the gap between high-skilled and low-skilled workers. It may also change how jobs are distributed across occupations (Melina et al. (2024)). These issues are important for job seekers in 2024. They are especially important for students entering fields like business analytics and data science.\nThis study uses labor market data and recent research to examine these trends. The goal is to understand salary patterns, skill demand, and the role of AI in shaping careers. This project aims to provide practical insights. These insights can help individuals align their skills with market needs. They can also support better career decisions in an AI-driven economy."
+  },
+  {
+    "objectID": "introduction.html#introduction",
+    "href": "introduction.html#introduction",
+    "title": "Job Market Analysis 2024",
+    "section": "",
+    "text": "Artificial intelligence (AI) is rapidly changing the global labor market. It is affecting job demand, required skills, and wage structures. Many industries are now integrating AI into their daily operations. This change is not only about automation. It is also about how work is performed and valued.\nThis project focuses on two key areas. The first area is salary and compensation trends. The second area is the growing importance of business analytics, data science, and machine learning skills. Recent studies show that AI is changing both job types and pay levels. Workers with technical and data skills often receive higher salaries.\nAt the same time, AI raises concerns about job displacement and inequality. AI can improve productivity and create new opportunities. However, it can also widen the gap between high-skilled and low-skilled workers. It may also change how jobs are distributed across occupations (Melina et al. (2024)). These issues are important for job seekers in 2024. They are especially important for students entering fields like business analytics and data science.\nThis study uses labor market data and recent research to examine these trends. The goal is to understand salary patterns, skill demand, and the role of AI in shaping careers. This project aims to provide practical insights. These insights can help individuals align their skills with market needs. They can also support better career decisions in an AI-driven economy."
+  },
+  {
+    "objectID": "introduction.html#literature-review",
+    "href": "introduction.html#literature-review",
+    "title": "Job Market Analysis 2024",
+    "section": "Literature Review",
+    "text": "Literature Review\nRecent studies show that artificial intelligence (AI) is reshaping the labor market in several important ways. These changes affect employment patterns, skill demand, wages, and inequality.\nFirst, AI is changing employment across industries. The International Monetary Fund reports that AI may affect a large share of global jobs, with both displacement and augmentation effects (Melina et al. (2024)). Many routine and repetitive tasks are more likely to be automated. At the same time, AI creates new roles that require analytical and technical skills. This pattern shows that AI does not only replace jobs. It also transforms the nature of work. Empirical evidence from online labor markets further confirms that generative AI is already changing job demand and task composition across occupations (Liu et al. (2023)).\nSecond, large-scale reports highlight the rapid expansion of AI. The AI Index Report 2025 shows that AI adoption continues to grow across industries, supported by rising investment and enterprise use (Maslej et al. (2025)). The Future of Jobs Report 2023 also identifies data and AI-related roles as some of the fastest-growing occupations (Di Battista et al. (2023)). These findings show that demand for AI and data skills is increasing in the labor market.\nThird, AI is influencing salary structures and skill demand. Workers with AI and data-related skills tend to earn higher wages. Employers increasingly focus on practical skills instead of formal degrees (Bone, Ehlinger, and Stephany (2025)). This shift increases the value of technical and analytical abilities. As a result, workers with these skills often receive better job opportunities and higher pay.\nFourth, AI may increase inequality across workers. High-skilled workers benefit more from AI adoption because they can use AI tools to improve productivity. In contrast, low-skilled workers face higher risks of job displacement. This imbalance can widen income gaps and create unequal opportunities across different groups (Georgieff (2024)).\nFinally, automation is transforming traditional occupations rather than eliminating them. The U.S. Bureau of Labor Statistics shows that jobs such as engineering roles are evolving, not disappearing (Machovec, Rieley, and Rolen (2025)). Workers are expected to integrate AI tools into their daily tasks. This change requires continuous learning and skill development. McKinsey also estimates that up to 60–70% of work activities may be affected by generative AI, which highlights the scale of change across occupations (Ellingrud et al. (2023)).\nOverall, the literature suggests that AI is restructuring the labor market. It increases demand for advanced skills and changes how work is performed. At the same time, it introduces challenges such as inequality and job displacement. These findings support this study’s focus on salary trends and the growing importance of data science and business analytics skills."
+  }
+]
