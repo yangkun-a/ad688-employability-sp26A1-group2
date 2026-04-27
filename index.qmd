@@ -17,6 +17,8 @@ body-classes: home-page
 :::
 :::
 
+::: {.home-surface}
+
 ## Project Guide
 
 ::: {.guide-intro}
@@ -51,6 +53,8 @@ Compares AI vs. non-AI salaries, remote work pay, regional differences, and wage
 Analyzes business analytics, data science, and machine learning job trends.
 
 [Open section](trends.html){.guide-card-link .stretched-link aria-label="Open Career and Skill Trends"}
+:::
+
 :::
 
 :::

@@ -2,6 +2,94 @@
   display: none;
 }
 
+.home-page #quarto-content,
+.home-page #quarto-document-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+#quarto-header {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(10px);
+}
+
+#quarto-header .navbar {
+  min-height: 88px;
+  padding: 0 1.25rem;
+  background: transparent !important;
+}
+
+#quarto-header .navbar-container {
+  align-items: center;
+}
+
+#quarto-header .navbar-brand {
+  color: #3f3f46;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+#quarto-header .navbar-brand:hover,
+#quarto-header .navbar-brand:focus {
+  color: #1f2937;
+}
+
+#quarto-header .navbar-collapse {
+  justify-content: center;
+}
+
+#quarto-header .navbar-nav {
+  gap: 1.1rem;
+  align-items: center;
+}
+
+#quarto-header .nav-link {
+  position: relative;
+  padding: 1.7rem 0.2rem 1.45rem;
+  color: #3f3f46 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+#quarto-header .nav-link:hover,
+#quarto-header .nav-link:focus {
+  color: #4f46e5 !important;
+}
+
+#quarto-header .nav-link.active,
+#quarto-header .nav-link[aria-current="page"] {
+  color: #4f46e5 !important;
+}
+
+#quarto-header .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.7rem;
+  width: 0;
+  height: 5px;
+  border-radius: 999px;
+  background: #4f46e5;
+  transform: translateX(-50%);
+  transition: width 0.2s ease;
+}
+
+#quarto-header .nav-link:hover::after,
+#quarto-header .nav-link:focus::after,
+#quarto-header .nav-link.active::after,
+#quarto-header .nav-link[aria-current="page"]::after {
+  width: 32px;
+}
+
+#quarto-header .quarto-search-button,
+#quarto-header #quarto-search {
+  color: #52525b;
+}
+
 .hero-banner {
   width: 100vw;
   min-height: 560px;
@@ -24,6 +112,10 @@
   display: flex;
   align-items: center;
   border-radius: 0;
+}
+
+.home-page .hero-banner {
+  margin-top: -1px;
 }
 
 .hero-text {
@@ -70,8 +162,17 @@
   text-decoration: none;
 }
 
-section#project-guide {
-  padding-top: 5rem;
+.home-surface {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: -3.5rem;
+  padding: 4.5rem 12vw 5rem;
+  background: #ffffff;
+  border-radius: 48px 48px 0 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.06);
 }
 
 section#project-guide > h2 {
