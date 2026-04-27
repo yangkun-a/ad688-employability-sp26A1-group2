@@ -123,14 +123,14 @@
     "href": "data_cleaning.html",
     "title": "Data Cleaning",
     "section": "",
-    "text": "This section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
+    "text": "Data Cleaning"
   },
   {
     "objectID": "data_cleaning.html#overview",
     "href": "data_cleaning.html#overview",
     "title": "Data Cleaning",
-    "section": "",
-    "text": "This section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
+    "section": "Overview",
+    "text": "Overview\nThis section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
   },
   {
     "objectID": "data_cleaning.html#data-cleaning-process",

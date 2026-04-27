@@ -9,6 +9,8 @@ execute:
   message: false
 ---
 
+<div class="dc-title-badge">Data Cleaning</div>
+
 ## Overview
 
 This section summarizes the data cleaning process applied to the Lightcast job postings dataset.  
