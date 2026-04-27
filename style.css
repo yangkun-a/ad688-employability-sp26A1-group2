@@ -9,7 +9,7 @@
       rgba(5, 15, 35, 0.55),
       rgba(5, 15, 35, 0.65)
     ),
-    url("images/hero-bg.jpg");
+    url("image/hero-bg.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
