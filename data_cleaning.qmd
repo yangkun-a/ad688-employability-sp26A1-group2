@@ -8,6 +8,8 @@ execute:
   message: false
 ---
 
+![](image/dc-bg.png){.page-title-banner}
+
 ## Overview
 
 This section summarizes the data cleaning process applied to the Lightcast job postings dataset.  
@@ -258,4 +260,3 @@ The table below shows the first five rows after data cleaning.
 df = pd.read_csv("data/processed/lightcast_cleaned.csv", low_memory=False)
 df.head()
 ```
-

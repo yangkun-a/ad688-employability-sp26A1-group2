@@ -119,18 +119,11 @@
     "text": "Project Guide\n\nThis website is organized into several sections. Start with the project overview to understand the dataset and research goals, then move through data preparation, salary trends, and career-skill analysis.\n\n\n\nProject Overview\nIntroduces the purpose of the project and the main research questions.\nOpen section\n\n\nData Preparation\nExplains how the raw Lightcast job posting data was cleaned and transformed.\nOpen section\n\n\nSalary & Compensation Trends\nCompares AI vs. non-AI salaries, remote work pay, regional differences, and wage growth.\nOpen section\n\n\nCareer & Skill Trends\nAnalyzes business analytics, data science, and machine learning job trends.\nOpen section"
   },
   {
-    "objectID": "data_cleaning.html",
-    "href": "data_cleaning.html",
-    "title": "Data Cleaning",
-    "section": "",
-    "text": "This section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
-  },
-  {
     "objectID": "data_cleaning.html#overview",
     "href": "data_cleaning.html#overview",
     "title": "Data Cleaning",
-    "section": "",
-    "text": "This section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
+    "section": "Overview",
+    "text": "Overview\nThis section summarizes the data cleaning process applied to the Lightcast job postings dataset.\nThe goal is to create a consistent and reliable annual salary variable and prepare the data for analysis."
   },
   {
     "objectID": "data_cleaning.html#data-cleaning-process",
