@@ -1,14 +1,13 @@
 ---
 title: "Data Cleaning"
 format: html
+body-classes: data-cleaning-page
 jupyter: python3
 execute:
   echo: false
   warning: false
   message: false
 ---
-
-![](image/dc-bg.png){.page-title-banner}
 
 ## Overview
 

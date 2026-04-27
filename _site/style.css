@@ -242,15 +242,26 @@ section#project-guide > h2 {
   color: #1e40af;
 }
 
-.page-title-banner {
-  display: block;
-  width: 100%;
-  max-height: 190px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 24px;
-  margin: 0.75rem 0 2rem;
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+.data-cleaning-page #title-block-header .quarto-title {
+  margin-bottom: 1rem;
+}
+
+.data-cleaning-page #title-block-header .title {
+  display: inline-block;
+  margin: 0;
+  padding: 1rem 2.25rem;
+  border-radius: 22px;
+  background-image:
+    linear-gradient(rgba(6, 10, 30, 0.22), rgba(6, 10, 30, 0.22)),
+    url("image/dc-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
 }
 
 .home-page #quarto-margin-sidebar,
