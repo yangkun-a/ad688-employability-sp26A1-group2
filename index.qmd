@@ -2,6 +2,7 @@
 title: "Job Market Analysis 2024"
 page-layout: full
 toc: false
+body-classes: home-page
 ---
 
 ::: {.hero-banner}

@@ -1,4 +1,4 @@
-#title-block-header {
+.home-page #title-block-header {
   display: none;
 }
 
@@ -71,7 +71,7 @@
 }
 
 section#project-guide {
-  margin-top: 3.5rem;
+  margin-top: 8rem;
 }
 
 .guide-intro {
