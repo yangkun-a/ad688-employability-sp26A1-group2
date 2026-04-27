@@ -3,7 +3,9 @@ title: "Job Market Analysis 2024"
 author: "Team 2"
 date: "April 27, 2026"
 title-block-banner: false
+page-layout: full
 ---
+
 ::: {.hero-banner}
 ::: {.hero-text}
 # Job Market Analysis 2024
