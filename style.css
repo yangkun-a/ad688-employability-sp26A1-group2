@@ -240,7 +240,7 @@ section#project-guide > h2 {
   color: #1e40af;
 }
 
-#quarto-margin-sidebar,
-.sidebar.margin-sidebar {
+.home-page #quarto-margin-sidebar,
+.home-page .sidebar.margin-sidebar {
   display: none !important;
 }
