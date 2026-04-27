@@ -236,20 +236,35 @@ model = smf.ols(
     data=reg_df
 ).fit()
 
-print(model.summary())
-model.params[["ai_binary", "remote_flag", "MIN_YEARS_EXPERIENCE"]]
+# print(model.summary())
+key_results = pd.DataFrame({
+    "Variable": ["AI-related job", "Remote job", "Minimum years of experience"],
+    "Coefficient": [
+        model.params["ai_binary"],
+        model.params["remote_flag"],
+        model.params["MIN_YEARS_EXPERIENCE"]
+    ],
+    "P-value": [
+        model.pvalues["ai_binary"],
+        model.pvalues["remote_flag"],
+        model.pvalues["MIN_YEARS_EXPERIENCE"]
+    ]
+})
 
+key_results
 ```
 
-```{python}
-model.pvalues[["ai_binary", "remote_flag", "MIN_YEARS_EXPERIENCE"]]
-```
 
-The regression results show that several job characteristics are significantly associated with salary after controlling for region and industry. First, the coefficient for `ai_binary` is positive and statistically significant, suggesting that AI-related jobs are associated with higher salaries than non-AI jobs, even after accounting for other factors. Based on the coefficient estimate, AI-related roles are associated with an approximate 5.7% salary premium.
+The regression results indicate that several job characteristics are significantly associated with salary after controlling for region and industry. 
 
-Second, the coefficient for `remote_flag` is also positive and highly significant, indicating that fully remote jobs are associated with higher salaries relative to the baseline group. The estimated effect suggests that remote roles are associated with roughly an 8.3% salary premium, holding other variables constant. 
+First, the coefficient for `ai_binary` is positive and statistically significant (p < 0.05), suggesting that AI-related jobs are associated with higher salaries than non-AI roles. The estimated coefficient implies an approximate 5.7% salary premium.
 
-Finally, `MIN_YEARS_EXPERIENCE` has a positive and highly significant relationship with salary. This means that jobs requiring more experience tend to pay more, with each additional year of minimum required experience associated with about a 5.5% increase in salary. Overall, the regression suggests that AI specialization, remote work, and experience requirements are all important predictors of salary.
+Second, the coefficient for `remote_flag` is also positive and statistically significant (p < 0.001), indicating that fully remote jobs tend to offer higher salaries, with an estimated premium of about 8.3%.
+
+Finally, `MIN_YEARS_EXPERIENCE` has a positive and highly significant relationship with salary (p ≈ 0), meaning that roles requiring more experience are associated with higher pay. Each additional year of minimum required experience corresponds to roughly a 5.5% increase in salary.
+
+Overall, the regression suggests that AI specialization, remote work, and experience requirements are key predictors of salary in the 2024 job market.
+
 
 ## 7. Can machine learning predict whether a job is high-paying?
 ```{python}
