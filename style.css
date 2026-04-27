@@ -71,7 +71,11 @@
 }
 
 section#project-guide {
-  margin-top: 8rem;
+  padding-top: 5rem;
+}
+
+section#project-guide > h2 {
+  margin-top: 0;
 }
 
 .guide-intro {
