@@ -1,17 +1,21 @@
+#title-block-header {
+  display: none;
+}
+
 .hero-banner {
   width: 100vw;
   min-height: 560px;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  margin-top: -3rem;
-  padding: 120px 12vw 100px;
+  margin-top: 0;
+  padding: 110px 12vw 100px;
   background-image:
     linear-gradient(
       90deg,
-      rgba(2, 6, 23, 0.88) 0%,
-      rgba(2, 6, 23, 0.72) 42%,
-      rgba(2, 6, 23, 0.45) 70%,
-      rgba(2, 6, 23, 0.30) 100%
+      rgba(2, 6, 23, 0.93) 0%,
+      rgba(2, 6, 23, 0.82) 38%,
+      rgba(2, 6, 23, 0.56) 68%,
+      rgba(2, 6, 23, 0.34) 100%
     ),
     url("image/hero-bg.jpg");
   background-size: cover;
@@ -31,21 +35,21 @@
 
 .hero-text h1 {
   color: #fff;
-  font-size: 4rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 18px;
   border-bottom: none;
-  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.62);
 }
 
 .hero-text h2 {
-  color: #dbeafe;
+  color: #e0f2fe;
   font-size: 1.5rem;
   font-weight: 650;
   margin-bottom: 24px;
   border-bottom: none;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.55);
 }
 
 .hero-text p {
@@ -53,7 +57,7 @@
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 30px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
 }
 
 .hero-button {

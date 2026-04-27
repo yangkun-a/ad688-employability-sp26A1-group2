@@ -1,17 +1,18 @@
 ---
+title: "Job Market Analysis 2024"
 page-layout: full
 toc: false
 ---
 
 ::: {.hero-banner}
 ::: {.hero-text}
-# Job Market Analysis 2024
+<h1>Job Market Analysis 2024</h1>
 
-## AI, Salary, Skills, and Employment Trends
+<h2>AI, Salary, Skills, and Employment Trends</h2>
 
-This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.
+<p>This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.</p>
 
-[Explore the Analysis](salary_compensation_trends.html){.hero-button}
+<a href="salary_compensation_trends.html" class="hero-button">Explore the Analysis</a>
 :::
 :::
 

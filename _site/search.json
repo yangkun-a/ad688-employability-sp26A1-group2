@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Job Market Analysis 2024",
-    "section": "",
-    "text": "This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.\nExplore the Analysis"
-  },
-  {
-    "objectID": "index.html#ai-salary-skills-and-employment-trends",
-    "href": "index.html#ai-salary-skills-and-employment-trends",
-    "title": "Job Market Analysis 2024",
-    "section": "",
-    "text": "This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.\nExplore the Analysis"
-  },
-  {
-    "objectID": "index.html#project-guide",
-    "href": "index.html#project-guide",
-    "title": "Job Market Analysis 2024",
-    "section": "Project Guide",
-    "text": "Project Guide\nThis website is organized into several sections. Start with the project overview to understand the dataset and research goals, then move through data preparation, salary trends, and career-skill analysis.\n\n\nProject Overview\nIntroduces the purpose of the project and the main research questions.\n\n\nData Preparation\nExplains how the raw Lightcast job posting data was cleaned and transformed.\n\n\nSalary & Compensation Trends\nCompares AI vs. non-AI salaries, remote work pay, regional differences, and wage growth.\n\n\nCareer & Skill Trends\nAnalyzes business analytics, data science, and machine learning job trends."
-  },
-  {
     "objectID": "salary_compensation_trends.html",
     "href": "salary_compensation_trends.html",
     "title": "Salary & Compensation trends",
@@ -124,6 +103,20 @@
     "title": "2.5.1 Most In-Demand Skills",
     "section": "2.5.4 Career Outlook",
     "text": "2.5.4 Career Outlook\n\n\nAverage Salary (cleaned): 115595.69\nMedian Salary (cleaned): 114400.0\n\n\n                            \n                                            \n\n\nAfter removing the extreme outliers, the salary analysis revealed that both the average and median salaries were within a realistic and competitive range. The distribution indicates that most roles offer good pay, with higher salaries typically associated with more advanced or specialised positions. This indicates that the career outlook for business analytics professionals remains highly positive. As organisations continue to rely on data and AI technologies, the demand for skilled professionals is expected to grow, leading to strong salary prospects and long-term career stability.\nSummary: Overall, the analysis reveals a clear trend towards data-driven and AI-integrated roles in the modern job market. Employers are increasingly demanding a combination of technical skills, business understanding and communication ability. Concurrently, AI-related capabilities are becoming prevalent in job advertisements, suggesting a transition towards automation and intelligent decision-making. Together with strong industry demand and competitive salaries, the outlook for business analytics professionals in 2024 is extremely positive."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Job Market Analysis 2024",
+    "section": "",
+    "text": "This project analyzes 2024 job posting data to understand how AI-related careers, compensation skills, locations, and work arrangements shape the modern labor market.\n\nExplore the Analysis"
+  },
+  {
+    "objectID": "index.html#project-guide",
+    "href": "index.html#project-guide",
+    "title": "Job Market Analysis 2024",
+    "section": "Project Guide",
+    "text": "Project Guide\nThis website is organized into several sections. Start with the project overview to understand the dataset and research goals, then move through data preparation, salary trends, and career-skill analysis.\n\n\nProject Overview\nIntroduces the purpose of the project and the main research questions.\n\n\nData Preparation\nExplains how the raw Lightcast job posting data was cleaned and transformed.\n\n\nSalary & Compensation Trends\nCompares AI vs. non-AI salaries, remote work pay, regional differences, and wage growth.\n\n\nCareer & Skill Trends\nAnalyzes business analytics, data science, and machine learning job trends."
   },
   {
     "objectID": "data_cleaning.html",
