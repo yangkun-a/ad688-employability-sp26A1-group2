@@ -18,28 +18,38 @@ toc: false
 
 ## Project Guide
 
+::: {.guide-intro}
 This website is organized into several sections. Start with the project overview to understand the dataset and research goals, then move through data preparation, salary trends, and career-skill analysis.
+:::
 
 ::: {.guide-grid}
 
 ::: {.guide-card}
 ### Project Overview
 Introduces the purpose of the project and the main research questions.
+
+[Open section](introduction.html){.guide-card-link .stretched-link aria-label="Open Project Overview"}
 :::
 
 ::: {.guide-card}
 ### Data Preparation
 Explains how the raw Lightcast job posting data was cleaned and transformed.
+
+[Open section](data_cleaning.html){.guide-card-link .stretched-link aria-label="Open Data Preparation"}
 :::
 
 ::: {.guide-card}
 ### Salary & Compensation Trends
 Compares AI vs. non-AI salaries, remote work pay, regional differences, and wage growth.
+
+[Open section](salary_compensation_trends.html){.guide-card-link .stretched-link aria-label="Open Salary and Compensation Trends"}
 :::
 
 ::: {.guide-card}
 ### Career & Skill Trends
 Analyzes business analytics, data science, and machine learning job trends.
+
+[Open section](trends.html){.guide-card-link .stretched-link aria-label="Open Career and Skill Trends"}
 :::
 
 :::
